@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Ujian TNI POLRI</string>
+    <string name="title_activity_pilih_ujian">"Pilih Ujian Activity "</string>
+    <string name="bahasa_inggris">Bahasa Inggris</string>
+    <string name="bahasa_indonesia">Bahasa Indonesia</string>
+    <string name="pengetahuan_umum">Pengetahuan Umum</string>
 </resources>

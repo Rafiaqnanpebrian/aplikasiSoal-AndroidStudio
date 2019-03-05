@@ -3,7 +3,6 @@ package id.techarea.ujiantnipolri;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText nama;
     Button btn_login;
@@ -34,10 +33,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (nama.getText().toString().equals("") || nama.getText().toString().isEmpty() ){
-            Toast.makeText(Login.this, "Nama Harus Diisi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Nama Harus Diisi", Toast.LENGTH_SHORT).show();
         }
         else {
-            Intent j = new Intent(Login.this, Login.class);
+            Intent j = new Intent(LoginActivity.this, PilihUjianActivity.class);
             j.putExtra("nama", String.valueOf(nama.getText()));
             startActivity(j);
             finish();
