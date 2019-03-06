@@ -6,5 +6,8 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorMapel">#153800</color>
+    <color name="gold">#FFCE54</color>
+    <color name="darkCenter">#675300</color>
+    <color name="darkGreen">#193B04</color>
 
 </resources>

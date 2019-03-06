@@ -8,6 +8,38 @@
     android:orientation="vertical"
     tools:context=".ShareActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/bintang_wahyu" />
+
+    <ImageView
+        android:id="@+id/imageViewOuterCircle"
+        android:layout_width="357dp"
+        android:layout_height="357dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/outer_circle" />
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/halo_share" />
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="share"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="28sp" />
+
     <com.szugyi.circlemenu.view.CircleLayout
         android:id="@+id/circleLayout"
         android:layout_width="360dp"
@@ -15,6 +47,42 @@
         android:layout_centerHorizontal="true"
         app:firstChildPosition="North"
         app:isRotating="false">
+
+        <com.szugyi.circlemenu.view.CircleImageView
+            android:id="@+id/shareIg"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_ig" />
+
+        <com.szugyi.circlemenu.view.CircleImageView
+            android:id="@+id/shareLine"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_line" />
+
+        <com.szugyi.circlemenu.view.CircleImageView
+            android:id="@+id/shareFb"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_fb" />
+
+        <com.szugyi.circlemenu.view.CircleImageView
+            android:id="@+id/shareWa"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_wa" />
+
     </com.szugyi.circlemenu.view.CircleLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/tni_polri_letter" />
 
 </RelativeLayout>
