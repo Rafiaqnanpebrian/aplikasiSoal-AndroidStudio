@@ -7,14 +7,14 @@
     android:gravity="center"
     android:background="@drawable/gradient_bg_1"
     android:orientation="vertical"
-    tools:context=".Login">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:scaleType="fitCenter"
         android:layout_marginBottom="160dp"
-        android:src="@drawable/Logo"/>
+        android:src="@drawable/logo"/>
 
     <EditText
         android:id="@+id/name"
