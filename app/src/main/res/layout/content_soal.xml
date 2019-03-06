@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="#fff"
+    tools:context="id.techarea.ujiantnipolri.AdapterContentSoal">
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="1."
+        android:paddingRight="5dp"
+        android:textColor="@android:color/holo_blue_dark"/>
+
+    <ScrollView
+        style="@android:style/Widget.DeviceDefault.Light.ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarStyle="insideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <WebView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:text="TextView"
+                android:layout_marginBottom="10dp"/>
+
+            <RadioGroup
+                android:id="@+id/jawab_grup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <RadioButton
+                    android:id="@+id/jawab_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RadioButton"
+                    android:paddingLeft="7dp"
+                    android:layout_margin="5dp"
+                    android:button="@drawable/radio_background"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:gravity="left"
+                    />
+
+                <RadioButton
+                    android:id="@+id/jawab_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RadioButton"
+                    android:paddingLeft="7dp"
+                    android:layout_margin="5dp"
+                    android:button="@drawable/radio_background"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:gravity="left" />
+
+                <RadioButton
+                    android:id="@+id/jawab_c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RadioButton"
+                    android:paddingLeft="7dp"
+                    android:layout_margin="5dp"
+                    android:button="@drawable/radio_background"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:gravity="left" />
+
+                <RadioButton
+                    android:id="@+id/jawab_d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RadioButton"
+                    android:paddingLeft="7dp"
+                    android:layout_margin="5dp"
+                    android:button="@drawable/radio_background"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:gravity="left"/>
+
+                <RadioButton
+                    android:id="@+id/jawab_e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RadioButton"
+                    android:paddingLeft="7dp"
+                    android:layout_margin="5dp"
+                    android:button="@drawable/radio_background"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:gravity="left"/>
+            </RadioGroup>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>
