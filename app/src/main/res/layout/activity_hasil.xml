@@ -28,7 +28,6 @@
                 android:layout_centerHorizontal="true"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
-                android:paddingTop="10dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/bintang_wahyu" />
         </RelativeLayout>
@@ -38,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="25dp">
 
             <FrameLayout
                 android:layout_width="85dp"
@@ -162,8 +161,8 @@
 
                 <TextView
                     android:id="@+id/NPengetahuanUmum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="0"
@@ -229,8 +228,8 @@
 
                 <TextView
                     android:id="@+id/NBahasaIndonesia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="0"
@@ -287,12 +286,12 @@
             android:layout_height="120dp"
             android:background="@drawable/bigsquare"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="75dp">
 
             <TextView
                 android:id="@+id/NAkhir"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="0"
@@ -354,7 +353,7 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:text="Akumulasi Nilai TNI POLRI"
@@ -364,7 +363,7 @@
 
 
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:id="@+id/Nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -376,13 +375,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2">
+            android:layout_height="match_parent">
 
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginTop="25dp">
@@ -402,7 +400,7 @@
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Benar"
                     android:textAlignment="center"
                     android:textColor="@android:color/white" />
@@ -431,7 +429,7 @@
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.33"
                     android:text="Salah"
                     android:textAlignment="center"
@@ -448,7 +446,7 @@
                 <TextView
                     android:id="@+id/Kosong"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0.33"
                     android:gravity="right"
@@ -461,7 +459,7 @@
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.33"
                     android:text="Kosong"
                     android:textAlignment="center"
