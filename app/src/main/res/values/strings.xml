@@ -7,4 +7,5 @@
     <string name="bahasa_inggris">Bahasa Inggris</string>
     <string name="pengetahuan_umum">Pengetahuan Umum </string>
     <string name="facebook_app_id">2277669762482351</string>
+    <string name="fb_login_protocol_scheme">fb2277669762482351</string>
 </resources>

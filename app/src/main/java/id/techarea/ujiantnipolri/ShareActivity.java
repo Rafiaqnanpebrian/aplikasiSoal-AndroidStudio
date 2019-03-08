@@ -78,6 +78,24 @@ public class ShareActivity extends AppCompatActivity implements CircleLayout.OnI
         circleLayout = (CircleLayout) findViewById(R.id.circleLayout);
         circleLayout.setFirstChildPosition(CircleLayout.FirstChildPosition.NORTH);
         circleLayout.setOnItemClickListener(this);
+
+        PrintKeyHash();
+    }
+
+    private void PrintKeyHash() {
+        try{
+            PackageInfo info = getPackageManager().getPackageInfo("id.techarea.ujiantnipolri",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature: info.signatures){
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash", Base64.encodeToString(md.digest(),Base64.DEFAULT));
+            }
+        }catch (PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+        }catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

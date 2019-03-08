@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ShareActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".ShareActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".PilihUjianActivity"></activity>
         <activity android:name=".HasilActivity"></activity>
 
