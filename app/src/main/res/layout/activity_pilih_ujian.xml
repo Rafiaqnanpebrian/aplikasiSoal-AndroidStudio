@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="-25dp"
-        android:background="@drawable/slayer"
+        android:background="@drawable/slayer1"
         android:layout_marginBottom="8dp">
 
     </LinearLayout>

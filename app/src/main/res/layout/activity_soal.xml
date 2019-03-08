@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="-25dp"
-        android:background="@drawable/slayer"
+        android:background="@drawable/slayer1"
         android:layout_marginBottom="10dp"/>
 
     <android.support.v4.view.ViewPager

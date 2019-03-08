@@ -7,187 +7,557 @@
     android:layout_height="match_parent"
     tools:context=".HasilActivity"
     android:background="@drawable/gradient_bg_1"
-    android:id="@+id/drawer"
-    >
+    android:id="@+id/drawer">
 
-<LinearLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:gravity="center_horizontal">
-
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="35dp"
-        android:background="@drawable/square"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="25dp"
-        android:text=""
-        />
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="35dp"
-        android:background="@drawable/square"
-        android:layout_marginTop="100dp"
-        android:text=""
-        />
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="35dp"
-        android:background="@drawable/square"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="25dp"
-        android:text=""
-        />
-</LinearLayout>
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        >
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:layout_marginRight="25dp"
-            android:textSize="7dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:text="Bahasa Inggris"
-            />
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:textSize="7dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:text="Pengetahuan Umum"
-            />
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:layout_marginLeft="25dp"
-            android:textSize="7dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:text="Bahasa Indonesia"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="90dp"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:id="@+id/judul"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:paddingTop="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/bintang_wahyu" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp">
+
+            <FrameLayout
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:background="@drawable/square"
+                android:layout_marginRight="25dp">
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeDividerColor="@android:color/transparent"
+                    app:gaugeDividerDrawFirst="false"
+                    app:gaugeDividerDrawLast="true"
+                    app:gaugeDividerSize="1"
+                    app:gaugeDividerStep="3"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="10dp"
+                    app:gaugeSweepAngle="240" />
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeROut"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="1dp"
+                    app:gaugeSweepAngle="240" />
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeRIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="1dp"
+                    app:gaugeSweepAngle="240" />
+
+                <TextView
+                    android:id="@+id/NBahasaInggris"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical|center"
+                    android:text="0"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+
+
+            <FrameLayout
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:background="@drawable/square">
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeW"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeDividerColor="@android:color/transparent"
+                    app:gaugeDividerDrawFirst="false"
+                    app:gaugeDividerDrawLast="true"
+                    app:gaugeDividerSize="1"
+                    app:gaugeDividerStep="3"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="10dp"
+                    app:gaugeSweepAngle="240" />
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeWOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="1dp"
+                    app:gaugeSweepAngle="240" />
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeWIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="1dp"
+                    app:gaugeSweepAngle="240" />
+
+                <TextView
+                    android:id="@+id/NPengetahuanUmum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:background="@drawable/square"
+                android:layout_marginLeft="25dp">
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeDividerColor="@android:color/transparent"
+                    app:gaugeDividerDrawFirst="false"
+                    app:gaugeDividerDrawLast="true"
+                    app:gaugeDividerSize="1"
+                    app:gaugeDividerStep="3"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="10dp"
+                    app:gaugeSweepAngle="240" />
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeLOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="1dp"
+                    app:gaugeSweepAngle="240" />
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gaugeLIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="@android:color/transparent"
+                    app:gaugePointStartColor="@android:color/transparent"
+                    app:gaugeStartAngle="150"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="BUTT"
+                    app:gaugeStrokeColor="@android:color/transparent"
+                    app:gaugeStrokeWidth="1dp"
+                    app:gaugeSweepAngle="240" />
+
+                <TextView
+                    android:id="@+id/NBahasaIndonesia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="Bahasa Inggris"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:text="Pengetahuan Umum"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:text="Bahasa Indonesia"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+
+
+
+        <FrameLayout
+            android:layout_width="220dp"
+            android:layout_height="120dp"
             android:background="@drawable/bigsquare"
-            android:layout_marginTop="30dp"
-            />
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp">
+
+            <TextView
+                android:id="@+id/NAkhir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textSize="64sp"
+                android:textStyle="bold" />
+
+            <pl.pawelkleczkowski.customgauge.CustomGauge
+                android:id="@+id/gauge2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:gaugeDividerColor="@android:color/transparent"
+                app:gaugeDividerDrawFirst="true"
+                app:gaugeDividerDrawLast="false"
+                app:gaugeDividerSize="1"
+                app:gaugeDividerStep="1"
+                app:gaugeEndValue="200"
+                app:gaugePointEndColor="@android:color/transparent"
+                app:gaugePointStartColor="@android:color/transparent"
+                app:gaugeStartAngle="150"
+                app:gaugeStartValue="0"
+                app:gaugeStrokeCap="BUTT"
+                app:gaugeStrokeColor="@android:color/transparent"
+                app:gaugeStrokeWidth="20dp"
+                app:gaugeSweepAngle="240" />
+
+            <pl.pawelkleczkowski.customgauge.CustomGauge
+                android:id="@+id/GaugeOut"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:gaugeEndValue="100"
+                app:gaugePointEndColor="@android:color/transparent"
+                app:gaugePointStartColor="@android:color/transparent"
+                app:gaugeStartAngle="150"
+                app:gaugeStartValue="0"
+                app:gaugeStrokeCap="BUTT"
+                app:gaugeStrokeColor="@android:color/transparent"
+                app:gaugeStrokeWidth="2dp"
+                app:gaugeSweepAngle="240" />
+
+            <pl.pawelkleczkowski.customgauge.CustomGauge
+                android:id="@+id/GaugeIn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:gaugeEndValue="100"
+                app:gaugePointEndColor="@android:color/transparent"
+                app:gaugePointStartColor="@android:color/transparent"
+                app:gaugeStartAngle="150"
+                app:gaugeStartValue="0"
+                app:gaugeStrokeCap="BUTT"
+                app:gaugeStrokeColor="@android:color/transparent"
+                app:gaugeStrokeWidth="2dp"
+                app:gaugeSweepAngle="240" />
+        </FrameLayout>
+
+
+
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:text="Akumulasi Nilai TNI POLRI"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:id="@+id/Nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:textAlignment="center"
-            android:textSize="17dp"
-            android:layout_marginTop="20dp"
-            android:text="Akumulasi Nilai TNI POLRI"/>
-        <TextView
+            android:gravity="center|top"
+            android:text="NAMA PENGGUNA"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:textAlignment="center"
-            android:textSize="25dp"
-            android:layout_marginTop="80dp"
-            android:text="NAMA PENGGUNA"/>
+            android:layout_weight="0.2">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:id="@+id/Benar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Benar"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:id="@+id/Salah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.33"
+                    android:gravity="right"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33"
+                    android:text="Salah"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:id="@+id/Kosong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.33"
+                    android:gravity="right"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33"
+                    android:text="Kosong"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="100dp"
-        >
-        <TextView
-            android:layout_gravity="bottom"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:layout_marginRight="50dp"/>
-
-        <TextView
-            android:layout_gravity="bottom"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:textColor="#fff"/>
-
-        <TextView
-            android:layout_gravity="bottom"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:layout_marginLeft="50dp"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="80dp"
-        >
-        <TextView
-            android:layout_gravity="bottom"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:layout_marginRight="50dp"
-            android:text="Benar"/>
-
-        <TextView
-            android:layout_gravity="bottom"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:text="Salah"/>
-
-        <TextView
-            android:layout_gravity="bottom"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:layout_marginLeft="50dp"
-            android:text="Kosong"/>
-    </LinearLayout>
-
     <android.support.design.widget.NavigationView
+        android:id="@+id/nvView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/nav_view"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/drawermenu"
-        android:clickable="true"
         android:layout_gravity="start"
-        android:background="@color/colorWhite"
-        app:itemTextColor="@color/colorBlack"
-        app:itemIconTint="@color/colorBlack">
+        android:background="@android:color/white"
+        app:headerLayout="@layout/header">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="230dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/exit_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/border_down_black">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_exit"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="EXIT"
+                        android:textColor="#000"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/repeat_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/border_down_black">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_repeat"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="REPEAT"
+                        android:textColor="#000"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/share_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/border_down_black">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_share"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="SHARE"
+                        android:textColor="#000"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
