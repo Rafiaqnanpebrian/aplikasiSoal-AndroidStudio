@@ -27,13 +27,20 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import pl.pawelkleczkowski.customgauge.CustomGauge;
+
 public class HasilActivity extends AppCompatActivity {
+
+    private TextView skorBahasaInggris, skorPengetahuanUmum, skorBahasaIndonesia, skorAkhir, skorBenar, skorSalah, skorPass, nama;
+    private int benar, salah, kosong, i;
+    private String scoreBahasaInggris, scorePengetahuanUmum, scoreBahasaIndonesia, scoreAkumulasi;
+    private CustomGauge gauge, gaugeR, gaugeL, gaugeW;
+
 
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
     LinearLayout exit, share, repeat;
-
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -42,16 +49,30 @@ public class HasilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hasil);
 
+        gauge = (CustomGauge) findViewById(R.id.gauge2);
+        gaugeR = (CustomGauge) findViewById(R.id.gaugeR);
+        gaugeW = (CustomGauge) findViewById(R.id.gaugeW);
+        gaugeL = (CustomGauge) findViewById(R.id.gaugeL);
+        skorBahasaInggris = (TextView) findViewById(R.id.NBahasaInggris);
+        skorPengetahuanUmum = (TextView) findViewById(R.id.NPengetahuanUmum);
+        skorBahasaIndonesia = (TextView) findViewById(R.id.NBahasaIndonesia);
+        skorAkhir = (TextView) findViewById(R.id.NAkhir);
+        skorBenar = (TextView) findViewById(R.id.Benar);
+        skorSalah = (TextView) findViewById(R.id.Salah);
+        skorPass = (TextView) findViewById(R.id.Kosong);
+        nama = (TextView) findViewById(R.id.Nama);
+
 
         share = (LinearLayout) findViewById(R.id.share_button);
         exit = (LinearLayout) findViewById(R.id.exit_button);
         repeat = (LinearLayout) findViewById(R.id.repeat_button);
 
-
         mDrawer = (DrawerLayout) findViewById(R.id.drawer);
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
+
+
 
 
         share.setOnClickListener(new View.OnClickListener() {
