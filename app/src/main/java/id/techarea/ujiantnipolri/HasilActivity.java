@@ -11,15 +11,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +33,7 @@ public class HasilActivity extends AppCompatActivity {
 
     private TextView skorBahasaInggris, skorPengetahuanUmum, skorBahasaIndonesia, skorAkhir, skorBenar, skorSalah, skorPass, nama;
     private int benar, salah, kosong, i;
+    private ImageButton menu;
     private String scoreBahasaInggris, scorePengetahuanUmum, scoreBahasaIndonesia, scoreAkumulasi;
     private CustomGauge gauge, gaugeR, gaugeL, gaugeW;
 
@@ -47,6 +48,9 @@ public class HasilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_hasil);
 
         gauge = (CustomGauge) findViewById(R.id.gauge2);
@@ -61,6 +65,18 @@ public class HasilActivity extends AppCompatActivity {
         skorSalah = (TextView) findViewById(R.id.Salah);
         skorPass = (TextView) findViewById(R.id.Kosong);
         nama = (TextView) findViewById(R.id.Nama);
+        menu = (ImageButton) findViewById(R.id.btn_menu);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawer.openDrawer(GravityCompat.START);
+
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
+                Bitmap bitmap = setViewToBitmapImage(linearLayout);
+                SaveImage(bitmap);
+            }
+        });
 
 
         share = (LinearLayout) findViewById(R.id.share_button);
@@ -83,7 +99,7 @@ public class HasilActivity extends AppCompatActivity {
             }
         });
 
-        /*exit.setOnClickListener(new View.OnClickListener() {
+        exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 exitDialog();
@@ -94,9 +110,47 @@ public class HasilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 repeatdialog();
             }
-        });*/
+        });
 
 
+    }
+    public static Bitmap setViewToBitmapImage(View view) {
+        //Define a bitmap with the same size as the view
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        //Bind a canvas to it
+        Canvas canvas = new Canvas(returnedBitmap);
+        //Get the view's background
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null)
+            //has background drawable, then draw it on the canvas
+            bgDrawable.draw(canvas);
+        else
+            //does not have background drawable, then draw white background on the canvas
+            canvas.drawColor(Color.WHITE);
+        // draw the view on the canvas
+        view.draw(canvas);
+        //return the bitmap
+        return returnedBitmap;
+    }
+    public void SaveImage(Bitmap finalBitmap) {
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/SimulasiToefl/skor");
+        myDir.mkdirs();
+        /*Random generator = new Random();
+        int n = 10000;
+        n = generator.nextInt(n);*/
+
+        String fname = "skor.jpg";
+        File file = new File(myDir, fname);
+        if (file.exists()) file.delete();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -126,6 +180,67 @@ public class HasilActivity extends AppCompatActivity {
         }
 
         mDrawer.closeDrawers();
+    }
+
+    public void exitDialog() {
+        final Dialog alert1 = new Dialog(HasilActivity.this, android.R.style.Theme_Black_NoTitleBar);
+        alert1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alert1.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        alert1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0060baff")));
+        alert1.setContentView(R.layout.exit_dialog);
+
+        Button tidak = (Button) alert1.findViewById(R.id.tidak);
+        Button ya = (Button) alert1.findViewById(R.id.iya);
+        tidak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert1.cancel();
+            }
+        });
+
+        ya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        alert1.setCancelable(false);
+        alert1.show();
+    }
+
+    public void repeatdialog(){
+        final Dialog alert1 = new Dialog(HasilActivity.this, android.R.style.Theme_Black_NoTitleBar);
+        alert1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alert1.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        alert1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0060baff")));
+        alert1.setContentView(R.layout.exit_dialog);
+
+        TextView textView = (TextView) alert1.findViewById(R.id.text_info);
+        Button tidak = (Button) alert1.findViewById(R.id.tidak);
+        Button ya = (Button) alert1.findViewById(R.id.iya);
+
+        textView.setText("Apakah Anda ingin mengulang simulasi?");
+        tidak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert1.cancel();
+            }
+        });
+
+        ya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent simulasi = new Intent(HasilActivity.this, PilihUjianActivity.class);
+                startActivity(simulasi);
+                finish();
+            }
+        });
+        alert1.setCancelable(false);
+        alert1.show();
     }
 
     @Override
