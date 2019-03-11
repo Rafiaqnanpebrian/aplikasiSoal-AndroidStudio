@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/exit"
+    <item android:id="@+id/nav_first_fragment"
         android:title="Exit"/>
-    <item android:id="@+id/repeat"
+    <item android:id="@+id/nav_second_fragment"
         android:title="Repeat"/>
-    <item android:id="@+id/share"
+    <item android:id="@+id/nav_third_fragment"
         android:title="Share"/>
 
 </menu>

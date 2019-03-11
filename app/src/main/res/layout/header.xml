@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="190dp"
-    android:orientation="vertical"
-    android:background="@drawable/gradient_bg_1">
-
-    <ImageView
-        android:id="@+id/imageView8"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_weight="0"
-        android:src="@drawable/bintang_wahyu" />
+        android:layout_height="180dp"
+        android:background="@drawable/gradient_bg_1">
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_weight="0"
-        android:src="@drawable/tni_polri_letter" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bintang_wahyu" />
+        />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/tni_polri_letter" />
+    </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/slayer1"
-        android:layout_marginBottom="8dp">
-
-    </LinearLayout>
+        android:layout_height="50dp"
+        android:layout_marginTop="-25dp"
+        android:background="@drawable/gelombang"
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>
