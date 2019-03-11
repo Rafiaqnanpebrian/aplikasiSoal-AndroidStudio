@@ -14,24 +14,40 @@
         android:layout_marginTop="30dp"
         android:src="@drawable/bintang_wahyu" />
 
-    <ImageView
-        android:id="@+id/haloImg"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/halo_share" />
-
-    <TextView
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+    <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+        android:id="@+id/pulseShare"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:text="share"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="28sp" />
+        app:duration="2000"
+        app:endRadius="150dp"
+        app:rippleColor="@color/colorWhite"
+        app:rippleType="stroke"
+        app:startRadius="70dp"
+        app:strokeWidth="5dp">
+
+        <ImageView
+            android:id="@+id/haloImg"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/halo_share" />
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="share"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="28sp" />
+
+    </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
 
     <com.szugyi.circlemenu.view.CircleLayout
         android:id="@+id/circleLayout"
@@ -41,33 +57,97 @@
         app:firstChildPosition="North"
         app:isRotating="false">
 
-        <com.szugyi.circlemenu.view.CircleImageView
-            android:id="@+id/shareIg"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:src="@drawable/ic_ig_round"
-            app:name="Share 1"/>
+        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+            android:id="@+id/pulseIg"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            app:duration="1000"
+            app:endRadius="50dp"
+            app:rippleColor="@color/colorWhite"
+            app:rippleType="stroke"
+            app:startRadius="0dp"
+            app:strokeWidth="3dp">
 
-        <com.szugyi.circlemenu.view.CircleImageView
-            android:id="@+id/shareLine"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:src="@drawable/ic_line_round"
-            app:name="Share 2"/>
+            <com.szugyi.circlemenu.view.CircleImageView
+                android:id="@+id/shareIg"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_ig_round"
+                android:onClick="onItemClick"
+                app:name="Share 1" />
 
-        <com.szugyi.circlemenu.view.CircleImageView
-            android:id="@+id/shareFb"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:src="@drawable/ic_fb_round"
-            app:name="Share 3"/>
+        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
 
-        <com.szugyi.circlemenu.view.CircleImageView
-            android:id="@+id/shareWa"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:src="@drawable/ic_wa_round"
-            app:name="Share 4"/>
+        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+            android:id="@+id/pulseLine"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            app:duration="1000"
+            app:endRadius="50dp"
+            app:rippleColor="@color/colorWhite"
+            app:rippleType="stroke"
+            app:startRadius="0dp"
+            app:strokeWidth="3dp">
+
+            <com.szugyi.circlemenu.view.CircleImageView
+                android:id="@+id/shareLine"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_line_round"
+                android:onClick="onItemClick"
+                app:name="Share 2" />
+
+        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+
+        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+            android:id="@+id/pulseFb"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            app:duration="1000"
+            app:endRadius="50dp"
+            app:rippleColor="@color/colorWhite"
+            app:rippleType="stroke"
+            app:startRadius="0dp"
+            app:strokeWidth="3dp">
+
+            <com.szugyi.circlemenu.view.CircleImageView
+                android:id="@+id/shareFb"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_fb_round"
+                android:onClick="onItemClick"
+                app:name="Share 3" />
+
+        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+
+        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+            android:id="@+id/pulseWa"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            app:duration="1000"
+            app:endRadius="50dp"
+            app:rippleColor="@color/colorWhite"
+            app:rippleType="stroke"
+            app:startRadius="0dp"
+            app:strokeWidth="3dp">
+
+            <com.szugyi.circlemenu.view.CircleImageView
+                android:id="@+id/shareWa"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_wa_round"
+                android:onClick="onItemClick"
+                app:name="Share 4" />
+
+        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
 
     </com.szugyi.circlemenu.view.CircleLayout>
 

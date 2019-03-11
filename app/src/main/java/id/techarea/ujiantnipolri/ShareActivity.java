@@ -33,6 +33,7 @@ import com.facebook.share.model.ShareContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
+import com.gauravbhola.ripplepulsebackground.RipplePulseLayout;
 import com.jackpocket.pulse.Pulse;
 import com.jackpocket.pulse.layouts.PulseLayout;
 import com.jackpocket.pulse.layouts.PulsingView;
@@ -48,6 +49,11 @@ public class ShareActivity extends AppCompatActivity implements CircleLayout.OnI
 
     protected PulseLayout pulseLayoutImg;
     protected CircleLayout circleLayout;
+    private RipplePulseLayout pulseIg;
+    private RipplePulseLayout pulseWa;
+    private RipplePulseLayout pulseLine;
+    private RipplePulseLayout pulseFb;
+    private RipplePulseLayout pulseShare;
 
     private String caption = "Temukan aplikasi Ujian TNI POLRI di Play Store" +
             "Aplikasi yang sangat bermanfaat untuk lolos ujian";
@@ -80,20 +86,35 @@ public class ShareActivity extends AppCompatActivity implements CircleLayout.OnI
         circleLayout.setOnItemClickListener(this);
 
         PrintKeyHash();
+
+        pulseIg = findViewById(R.id.pulseIg);
+        pulseIg.startRippleAnimation();
+
+        pulseWa = findViewById(R.id.pulseWa);
+        pulseWa.startRippleAnimation();
+
+        pulseFb = findViewById(R.id.pulseFb);
+        pulseFb.startRippleAnimation();
+
+        pulseLine = findViewById(R.id.pulseLine);
+        pulseLine.startRippleAnimation();
+
+        pulseShare = findViewById(R.id.pulseShare);
+        pulseShare.startRippleAnimation();
     }
 
     private void PrintKeyHash() {
-        try{
+        try {
             PackageInfo info = getPackageManager().getPackageInfo("id.techarea.ujiantnipolri",
                     PackageManager.GET_SIGNATURES);
-            for (Signature signature: info.signatures){
+            for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
-                Log.d("KeyHash", Base64.encodeToString(md.digest(),Base64.DEFAULT));
+                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
-        }catch (PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        }catch (NoSuchAlgorithmException e){
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
     }
@@ -152,7 +173,7 @@ public class ShareActivity extends AppCompatActivity implements CircleLayout.OnI
                 break;
 
             case R.id.shareIg:
-                if (verificateSosmed("com.instagram.android")){
+                if (verificateSosmed("com.instagram.android")) {
                     createInstaIntent(type, uri);
                 } else {
                     NotFound("Instagram tidak ditemukan");
@@ -160,7 +181,7 @@ public class ShareActivity extends AppCompatActivity implements CircleLayout.OnI
                 break;
 
             case R.id.shareLine:
-                if (verificateSosmed("jp.naver.line.android")){
+                if (verificateSosmed("jp.naver.line.android")) {
                     createLineIntent(uri);
                 } else {
                     NotFound("Line tidak ditemukan");
@@ -219,7 +240,7 @@ public class ShareActivity extends AppCompatActivity implements CircleLayout.OnI
         boolean installed = false;
 
         try {
-            ApplicationInfo info = getPackageManager().getApplicationInfo(paket,    0);
+            ApplicationInfo info = getPackageManager().getApplicationInfo(paket, 0);
             installed = true;
         } catch (PackageManager.NameNotFoundException e) {
             installed = false;
