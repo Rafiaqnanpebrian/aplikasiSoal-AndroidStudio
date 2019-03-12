@@ -1,161 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerShare"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_bg_1"
     android:orientation="vertical"
     tools:context=".ShareActivity">
 
-    <ImageView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linearlayout2"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/bintang_wahyu" />
-
-    <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
-        android:id="@+id/pulseShare"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        app:duration="2000"
-        app:endRadius="150dp"
-        app:rippleColor="@color/colorWhite"
-        app:rippleType="stroke"
-        app:startRadius="70dp"
-        app:strokeWidth="5dp">
-
-        <ImageView
-            android:id="@+id/haloImg"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/halo_share" />
-
-        <TextView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="share"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textSize="28sp" />
-
-    </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
-
-    <com.szugyi.circlemenu.view.CircleLayout
-        android:id="@+id/circleLayout"
-        android:layout_width="360dp"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        app:firstChildPosition="North"
-        app:isRotating="false">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
-            android:id="@+id/pulseIg"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:gravity="center"
-            app:duration="1000"
-            app:endRadius="50dp"
-            app:rippleColor="@color/colorWhite"
-            app:rippleType="stroke"
-            app:startRadius="0dp"
-            app:strokeWidth="3dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <com.szugyi.circlemenu.view.CircleImageView
-                android:id="@+id/shareIg"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_ig_round"
-                android:onClick="onItemClick"
-                app:name="Share 1" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp">
 
-        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+                <ImageButton
+                    android:id="@+id/btn_menu_share"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_more" />
 
-        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
-            android:id="@+id/pulseLine"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:gravity="center"
-            app:duration="1000"
-            app:endRadius="50dp"
-            app:rippleColor="@color/colorWhite"
-            app:rippleType="stroke"
-            app:startRadius="0dp"
-            app:strokeWidth="3dp">
+                <ImageView
+                    android:id="@+id/judul"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="false"
+                    android:paddingTop="10dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/bintang_wahyu" />
+            </RelativeLayout>
 
-            <com.szugyi.circlemenu.view.CircleImageView
-                android:id="@+id/shareLine"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_line_round"
-                android:onClick="onItemClick"
-                app:name="Share 2" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
 
-        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+                <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+                    android:id="@+id/pulseShare"
+                    android:layout_width="400dp"
+                    android:layout_height="400dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    app:duration="2000"
+                    app:endRadius="150dp"
+                    app:rippleColor="@color/colorWhite"
+                    app:rippleType="stroke"
+                    app:startRadius="70dp"
+                    app:strokeWidth="5dp">
 
-        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
-            android:id="@+id/pulseFb"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:gravity="center"
-            app:duration="1000"
-            app:endRadius="50dp"
-            app:rippleColor="@color/colorWhite"
-            app:rippleType="stroke"
-            app:startRadius="0dp"
-            app:strokeWidth="3dp">
+                    <ImageView
+                        android:id="@+id/haloImg"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/halo_share" />
 
-            <com.szugyi.circlemenu.view.CircleImageView
-                android:id="@+id/shareFb"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_fb_round"
-                android:onClick="onItemClick"
-                app:name="Share 3" />
+                    <TextView
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="share"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textSize="28sp" />
 
-        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+                </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
 
-        <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
-            android:id="@+id/pulseWa"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:gravity="center"
-            app:duration="1000"
-            app:endRadius="50dp"
-            app:rippleColor="@color/colorWhite"
-            app:rippleType="stroke"
-            app:startRadius="0dp"
-            app:strokeWidth="3dp">
+                <com.szugyi.circlemenu.view.CircleLayout
+                    android:id="@+id/circleLayout"
+                    android:layout_width="360dp"
+                    android:layout_height="360dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    app:firstChildPosition="North"
+                    app:isRotating="false">
 
-            <com.szugyi.circlemenu.view.CircleImageView
-                android:id="@+id/shareWa"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_wa_round"
-                android:onClick="onItemClick"
-                app:name="Share 4" />
+                    <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+                        android:id="@+id/pulseIg"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:gravity="center"
+                        app:duration="1000"
+                        app:endRadius="50dp"
+                        app:rippleColor="@color/colorWhite"
+                        app:rippleType="stroke"
+                        app:startRadius="0dp"
+                        app:strokeWidth="3dp">
 
-        </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+                        <com.szugyi.circlemenu.view.CircleImageView
+                            android:id="@+id/shareIg"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_centerInParent="true"
+                            android:onClick="onItemClick"
+                            android:src="@drawable/ic_ig_round"
+                            app:name="Share 1" />
 
-    </com.szugyi.circlemenu.view.CircleLayout>
+                    </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:src="@drawable/tni_polri_letter" />
+                    <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+                        android:id="@+id/pulseLine"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:gravity="center"
+                        app:duration="1000"
+                        app:endRadius="50dp"
+                        app:rippleColor="@color/colorWhite"
+                        app:rippleType="stroke"
+                        app:startRadius="0dp"
+                        app:strokeWidth="3dp">
 
-</RelativeLayout>
+                        <com.szugyi.circlemenu.view.CircleImageView
+                            android:id="@+id/shareLine"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_centerInParent="true"
+                            android:onClick="onItemClick"
+                            android:src="@drawable/ic_line_round"
+                            app:name="Share 2" />
+
+                    </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+
+                    <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+                        android:id="@+id/pulseFb"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:gravity="center"
+                        app:duration="1000"
+                        app:endRadius="50dp"
+                        app:rippleColor="@color/colorWhite"
+                        app:rippleType="stroke"
+                        app:startRadius="0dp"
+                        app:strokeWidth="3dp">
+
+                        <com.szugyi.circlemenu.view.CircleImageView
+                            android:id="@+id/shareFb"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_centerInParent="true"
+                            android:onClick="onItemClick"
+                            android:src="@drawable/ic_fb_round"
+                            app:name="Share 3" />
+
+                    </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+
+                    <com.gauravbhola.ripplepulsebackground.RipplePulseLayout
+                        android:id="@+id/pulseWa"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:gravity="center"
+                        app:duration="1000"
+                        app:endRadius="50dp"
+                        app:rippleColor="@color/colorWhite"
+                        app:rippleType="stroke"
+                        app:startRadius="0dp"
+                        app:strokeWidth="3dp">
+
+                        <com.szugyi.circlemenu.view.CircleImageView
+                            android:id="@+id/shareWa"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_centerInParent="true"
+                            android:onClick="onItemClick"
+                            android:src="@drawable/ic_wa_round"
+                            app:name="Share 4" />
+
+                    </com.gauravbhola.ripplepulsebackground.RipplePulseLayout>
+
+                </com.szugyi.circlemenu.view.CircleLayout>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/tni_polri_letter" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nvViewShare"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/white"
+        app:headerLayout="@layout/header">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="230dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/exit_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/border_down_black"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_exit" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="EXIT"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/repeat_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/border_down_black"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_repeat" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="REPEAT"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/share_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/border_down_black"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_share" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="SHARE"
+                        android:textColor="#000" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>
