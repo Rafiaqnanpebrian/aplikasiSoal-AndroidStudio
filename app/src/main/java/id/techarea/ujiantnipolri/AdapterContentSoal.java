@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class AdapterContentSoal extends PagerAdapter {
     public AdapterContentSoal(List<Soal> dataList, Context context, int id_exam) {
         mDataList = dataList;
         this.context = context;
-        this.id_exam = id_exam;
+        //this.id_exam = id_exam;
     }
 
     @Override
@@ -78,19 +79,21 @@ public class AdapterContentSoal extends PagerAdapter {
         ViewPager mViewPager = (ViewPager) ((Activity) context).findViewById(R.id.view_pager);
         final List<Jawaban> jawabanList = mDataList.get(position).getListJawaban();
 
-        nmr.setText(String.valueOf(position+1));
+        Log.i("soal", mDataList.get(position).getQuestion());
+        //nmr.setText(String.valueOf(position+1));
         String htmlFormat = "<body style='margin:0px'>" +
                 "<p style='text-align:justify;color: #0099cc;    font-size: 11pt; margin:0px;'>"+
                 mDataList.get(position).getQuestion()+"</p></body>";
 
+        soal.setWebViewClient(new MyBrowser());
         soal.getSettings();
         soal.setBackgroundColor(Color.TRANSPARENT);
-        soal.loadData(htmlFormat,"text/html","utf-8");
+        soal.loadData(mDataList.get(position).getQuestion(),"text/html","utf-8");
         a.setText(jawabanList.get(0).getAnswer());
         b.setText(jawabanList.get(1).getAnswer());
         c.setText(jawabanList.get(2).getAnswer());
         d.setText(jawabanList.get(3).getAnswer());
-        e.setText(jawabanList.get(4).getAnswer());
+//        e.setText(jawabanList.get(4).getAnswer());
 
 
         //Selanjutnya Besok ------ BELUM SELESAI -----
@@ -104,7 +107,7 @@ public class AdapterContentSoal extends PagerAdapter {
 //            }
 //        }
 
-        jwb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+      /*  jwb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 a.setOnClickListener(new View.OnClickListener() {
@@ -148,10 +151,10 @@ public class AdapterContentSoal extends PagerAdapter {
                 });
 
             }
-        });
+        });*/
 
 
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+       /* mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -171,7 +174,7 @@ public class AdapterContentSoal extends PagerAdapter {
             public void onPageScrollStateChanged(int state) {
 
             }
-        });
+        });*/
 
         container.addView(v);
         return v;
@@ -186,10 +189,10 @@ public class AdapterContentSoal extends PagerAdapter {
     public JawabanUser setJwbUser(int pos, int order, List<Jawaban> listJawaban, List<Soal> soalUjianList) {
         JawabanUser jwbusr = new JawabanUser();
         jwbusr.setId(pos + 1);
-        jwbusr.setJawabanid(listJawaban.get(order).getId());
+        /*jwbusr.setJawabanid(listJawaban.get(order).getId());
         jwbusr.setQuestionid(soalUjianList.get(pos).getId());
         jwbusr.setMark(listJawaban.get(order).getKey());
-        jwbusr.setOrder(listJawaban.get(order).getOrder());
+        jwbusr.setOrder(listJawaban.get(order).getOrder());*/
         return jwbusr;
     }
 
@@ -209,5 +212,34 @@ public class AdapterContentSoal extends PagerAdapter {
             radioGroup.clearCheck();
         }
     }
+    private class MyBrowser extends WebViewClient {
+
+
+        public MyBrowser() {
+        }
+
+
+
+        @Override
+        public void onLoadResource(WebView view, String url) {
+            super.onLoadResource(view, url);
+
+
+
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        view.loadUrl(url);
+        return true;
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+
+    }
+
+}
 
 }
