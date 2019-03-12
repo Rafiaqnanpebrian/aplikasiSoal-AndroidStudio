@@ -36,8 +36,6 @@ public class HasilActivity extends AppCompatActivity {
     private ImageButton menu;
     private String scoreBahasaInggris, scorePengetahuanUmum, scoreBahasaIndonesia, scoreAkumulasi;
     private CustomGauge gauge, gaugeR, gaugeL, gaugeW;
-
-
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
@@ -78,7 +76,6 @@ public class HasilActivity extends AppCompatActivity {
             }
         });
 
-
         share = (LinearLayout) findViewById(R.id.share_button);
         exit = (LinearLayout) findViewById(R.id.exit_button);
         repeat = (LinearLayout) findViewById(R.id.repeat_button);
@@ -87,9 +84,6 @@ public class HasilActivity extends AppCompatActivity {
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
         setupDrawerContent(nvDrawer);
-
-
-
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +105,6 @@ public class HasilActivity extends AppCompatActivity {
                 repeatdialog();
             }
         });
-
 
     }
     public static Bitmap setViewToBitmapImage(View view) {
@@ -164,7 +157,6 @@ public class HasilActivity extends AppCompatActivity {
                 });
     }
 
-
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
 
@@ -203,7 +195,11 @@ public class HasilActivity extends AppCompatActivity {
         ya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent keluar = new Intent(Intent.ACTION_MAIN);
+                keluar.addCategory(Intent.CATEGORY_HOME);
+                keluar.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(keluar);
+                alert1.cancel();
             }
         });
         alert1.setCancelable(false);
@@ -234,9 +230,8 @@ public class HasilActivity extends AppCompatActivity {
         ya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent simulasi = new Intent(HasilActivity.this, PilihUjianActivity.class);
-                startActivity(simulasi);
-                finish();
+
+
             }
         });
         alert1.setCancelable(false);

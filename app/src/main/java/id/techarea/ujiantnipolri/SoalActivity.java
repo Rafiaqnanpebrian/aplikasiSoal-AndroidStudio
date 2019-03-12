@@ -27,6 +27,7 @@ public class SoalActivity extends AppCompatActivity {
                 final Intent finish_soal = new Intent(SoalActivity.this, HasilActivity.class);
                 finish_soal.putExtras(getIntent().getExtras());
                 startActivity(finish_soal);
+                finish();
             }
         });
     }
