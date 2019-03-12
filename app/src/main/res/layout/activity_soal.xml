@@ -23,6 +23,18 @@
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"/>
+        <Button
+            android:id="@+id/btn_finish_soal"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:maxWidth="100dp"
+            android:background="@drawable/round_corner_btn_finish"
+            android:text="Finish"
+            android:onClick="onClick"
+            android:textSize="15sp"
+            android:textColor="@color/darkGreen"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
