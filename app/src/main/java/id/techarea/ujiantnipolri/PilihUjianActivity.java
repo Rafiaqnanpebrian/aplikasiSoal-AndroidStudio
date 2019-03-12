@@ -53,5 +53,4 @@ public class PilihUjianActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-
 }
