@@ -85,6 +85,9 @@ public class AdapterContentSoal extends PagerAdapter {
                 "<p style='text-align:justify;color: #0099cc;    font-size: 11pt; margin:0px;'>"+
                 mDataList.get(position).getQuestion()+"</p></body>";
 
+        if (jawabanList.size()<=4){
+            e.setVisibility(View.GONE);
+        }
 
         soal.getSettings();
         soal.setBackgroundColor(Color.TRANSPARENT);
@@ -93,7 +96,7 @@ public class AdapterContentSoal extends PagerAdapter {
         b.setText(jawabanList.get(1).getAnswer());
         c.setText(jawabanList.get(2).getAnswer());
         d.setText(jawabanList.get(3).getAnswer());
-//        e.setText(jawabanList.get(4).getAnswer());
+        //e.setText(jawabanList.get(4).getAnswer());
 
 
         //Selanjutnya Besok ------ BELUM SELESAI -----
