@@ -85,10 +85,10 @@ public class AdapterContentSoal extends PagerAdapter {
                 "<p style='text-align:justify;color: #0099cc;    font-size: 11pt; margin:0px;'>"+
                 mDataList.get(position).getQuestion()+"</p></body>";
 
-        soal.setWebViewClient(new MyBrowser());
+
         soal.getSettings();
         soal.setBackgroundColor(Color.TRANSPARENT);
-        soal.loadData(mDataList.get(position).getQuestion(),"text/html","utf-8");
+        soal.loadData(htmlFormat,"text/html","utf-8");
         a.setText(jawabanList.get(0).getAnswer());
         b.setText(jawabanList.get(1).getAnswer());
         c.setText(jawabanList.get(2).getAnswer());
@@ -183,7 +183,7 @@ public class AdapterContentSoal extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        return false;
+        return view == o;
     }
 
     public JawabanUser setJwbUser(int pos, int order, List<Jawaban> listJawaban, List<Soal> soalUjianList) {
@@ -212,34 +212,5 @@ public class AdapterContentSoal extends PagerAdapter {
             radioGroup.clearCheck();
         }
     }
-    private class MyBrowser extends WebViewClient {
-
-
-        public MyBrowser() {
-        }
-
-
-
-        @Override
-        public void onLoadResource(WebView view, String url) {
-            super.onLoadResource(view, url);
-
-
-
-    }
-
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        view.loadUrl(url);
-        return true;
-    }
-
-    @Override
-    public void onPageFinished(WebView view, String url) {
-        super.onPageFinished(view, url);
-
-    }
-
-}
 
 }
