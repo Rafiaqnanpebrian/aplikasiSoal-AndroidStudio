@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.techarea.ujiantnipolri.BuildConfig;
+import id.techarea.ujiantnipolri.models.Jawaban;
 import id.techarea.ujiantnipolri.models.Soal;
 
 public class DBHandler extends SQLiteOpenHelper {
@@ -105,6 +106,43 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i,int i1) {
 
+    }
+    public List<Soal> getDataSoal(int id_exam){
+        List<Soal> listDataSoal = new ArrayList<Soal>();
+//        Cursor c = getReadableDatabase().rawQuery("select * from questions where id_exam = "+id_exam+" order by `id` asc",null);
+        Cursor c = getReadableDatabase().rawQuery("select * from pertanyaan where id_exam = "+id_exam+" order by `id` asc",null);//order by RANDOM()",null);
+
+        if (c.moveToFirst()) {
+            do {
+                Soal soal = new Soal();
+                soal.setId(c.getInt(c.getColumnIndex("id")));
+                soal.setQuestion(c.getString(c.getColumnIndex("question")));
+                soal.setId_exam(c.getInt(c.getColumnIndex("id_exam")));
+                soal.setListJawaban(getDataJawaban("jawaban", soal.getId()));
+                listDataSoal.add(soal);
+            } while (c.moveToNext());
+        }
+        return listDataSoal;
+    }
+
+    public List<Jawaban> getDataJawaban(String table, int id_soal){
+        List<Jawaban> listJawaban = new ArrayList<Jawaban>();
+
+        Cursor c = getReadableDatabase().rawQuery("select * from "+table+" where questionid = "+id_soal+" order by `order` asc",null);
+
+        if (c.moveToFirst()) {
+            do {
+                Jawaban jawaban = new Jawaban();
+                jawaban.setId(c.getInt(c.getColumnIndex("id")));
+                jawaban.setQuestionid(c.getInt(c.getColumnIndex("questionid")));
+                jawaban.setOrder(c.getInt(c.getColumnIndex("order")));
+                jawaban.setAnswer(c.getString(c.getColumnIndex("answer")));
+                jawaban.setKey(c.getInt(c.getColumnIndex("key")));
+                listJawaban.add(jawaban);
+            } while (c.moveToNext());
+        }
+
+        return listJawaban;
     }
 
     /*public List<Soal> getDataSoalBahasaInggris(int id_exam) {

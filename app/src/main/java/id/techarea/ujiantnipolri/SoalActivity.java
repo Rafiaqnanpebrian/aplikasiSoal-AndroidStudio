@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -44,12 +45,12 @@ public class SoalActivity extends AppCompatActivity {
     private CommonNavigator commonNavigator;
 
     DBHandler db;
-    List<Soal>soalList;
+    List<Soal> soalList;
     int id_exam = 1;
     Intent intent;
     Button finishLatihan;
 
-    Boolean doubleBackToExitPressedOnce  = false;
+    Boolean doubleBackToExitPressedOnce = false;
 
 
     @Override
@@ -58,23 +59,22 @@ public class SoalActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_soal);
-
-
-        final ProgressDialog loading = ProgressDialog.show(SoalActivity.this,"","Menyiapkan Soal..",
+        final ProgressDialog loading = ProgressDialog.show(SoalActivity.this, "", "Menyiapkan Soal..",
                 true);
 
-//        Thread thread = new Thread(){
-//            @Override
-//            public void run() {
-                //super.run();
-               // db = new DBHandler(SoalActivity.this);
-               // intent = getIntent();
-                //id_exam = intent.getIntExtra("sim",1);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                db = new DBHandler(SoalActivity.this);
+                intent = getIntent();
+                id_exam = intent.getIntExtra("sim", 1);
 
-                //soalList = db.getDataSoalReading(id_exam);
+                soalList = db.getDataSoal(id_exam);
 
-                Soal soal = new Soal();
+                /*Soal soal = new Soal();
                 soal.setQuestion("pertanyaan 1");
                 Jawaban jawaban1 = new Jawaban();
                 jawaban1.setAnswer("jawaban1");
@@ -99,25 +99,27 @@ public class SoalActivity extends AppCompatActivity {
                 soal.setListJawaban(jawabanList);
 
                 soalList = new ArrayList<>();
-                soalList.add(soal);
+                soalList.add(soal);*/
 
-               /* runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {*/
-                        mExamplePagerAdapter = new AdapterContentSoal(soalList,SoalActivity.this,1);
+                    public void run() {
+
+                        mExamplePagerAdapter = new AdapterContentSoal(soalList, SoalActivity.this, 1);
 
                         mViewPager = (ViewPager) findViewById(R.id.view_pager);
                         mViewPager.setAdapter(mExamplePagerAdapter);
 
                         initMagicIndicator();
-                 /*   }
-                });*/
+                    }
+                });
                 loading.dismiss();
 
             }
-//        };thread.start();
+        };
+        thread.start();
 
-        /*finishLatihan =(Button) findViewById(R.id.);
+        /*finishLatihan =(Button) findViewById(R.id.btn_finish_soal);
         finishLatihan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,9 +127,9 @@ public class SoalActivity extends AppCompatActivity {
             }
         });*/
 
-//    }
+    }
 
-    private void initMagicIndicator(){
+    private void initMagicIndicator() {
         magicIndicator = (MagicIndicator) findViewById(R.id.magic_indicator);
 
         commonNavigator = new CommonNavigator(this);
@@ -141,7 +143,7 @@ public class SoalActivity extends AppCompatActivity {
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
-                simplePagerTitleView.setText(String.valueOf(index+1));
+                simplePagerTitleView.setText(String.valueOf(index + 1));
                 simplePagerTitleView.setGravity(Gravity.CENTER);
                 simplePagerTitleView.setNormalColor(Color.parseColor("#ffffff"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#3abaff"));
@@ -163,8 +165,9 @@ public class SoalActivity extends AppCompatActivity {
             }
         });
         magicIndicator.setNavigator(commonNavigator);
-        ViewPagerHelper.bind(magicIndicator,mViewPager);
+        ViewPagerHelper.bind(magicIndicator, mViewPager);
     }
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -179,8 +182,10 @@ public class SoalActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 500);
     }
+
 }
+
