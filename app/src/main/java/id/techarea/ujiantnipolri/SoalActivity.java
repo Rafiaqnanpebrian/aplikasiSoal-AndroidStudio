@@ -46,7 +46,7 @@ public class SoalActivity extends AppCompatActivity {
 
     DBHandler db;
     List<Soal> soalList;
-    int id_exam = 1;
+    int id_exam;
     Intent intent;
     Button finishLatihan;
 
@@ -70,7 +70,7 @@ public class SoalActivity extends AppCompatActivity {
                 super.run();
                 db = new DBHandler(SoalActivity.this);
                 intent = getIntent();
-                id_exam = intent.getIntExtra("sim", 1);
+                id_exam = intent.getIntExtra("sim", 0);
 
                 soalList = db.getDataSoal(id_exam);
 
@@ -105,12 +105,30 @@ public class SoalActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        mExamplePagerAdapter = new AdapterContentSoal(soalList, SoalActivity.this, 1);
+                        if (id_exam == 1) {
+                            mExamplePagerAdapter = new AdapterContentSoal(soalList, SoalActivity.this, 1);
 
-                        mViewPager = (ViewPager) findViewById(R.id.view_pager);
-                        mViewPager.setAdapter(mExamplePagerAdapter);
+                            mViewPager = (ViewPager) findViewById(R.id.view_pager);
+                            mViewPager.setAdapter(mExamplePagerAdapter);
 
-                        initMagicIndicator();
+                            initMagicIndicator();
+                        } else if (id_exam == 2) {
+                            mExamplePagerAdapter = new AdapterContentSoal(soalList, SoalActivity.this, 2);
+
+                            mViewPager = (ViewPager) findViewById(R.id.view_pager);
+                            mViewPager.setAdapter(mExamplePagerAdapter);
+
+                            initMagicIndicator();
+                        } else if (id_exam == 3) {
+                            mExamplePagerAdapter = new AdapterContentSoal(soalList, SoalActivity.this, 3);
+
+                            mViewPager = (ViewPager) findViewById(R.id.view_pager);
+                            mViewPager.setAdapter(mExamplePagerAdapter);
+
+                            initMagicIndicator();
+                        }
+
+
                     }
                 });
                 loading.dismiss();

@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 
 public class PilihUjianActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LinearLayout btn_bahasa_inggris, btn_bahasa_indonesia,  btn_pengetahuan_umum;
+    LinearLayout btn_bahasa_inggris, btn_bahasa_indonesia, btn_pengetahuan_umum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +35,20 @@ public class PilihUjianActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case (R.id.btn_bahasa_inggris):
-                final Intent bahasa_inggris = new Intent(PilihUjianActivity.this, SoalActivity.class);
-                bahasa_inggris.putExtras(getIntent().getExtras());
+                Intent bahasa_inggris = new Intent(PilihUjianActivity.this, SoalActivity.class);
+                bahasa_inggris.putExtra("sim", 2);
                 startActivity(bahasa_inggris);
                 break;
 
             case (R.id.btn_bahasa_indonesia):
                 final Intent bahasa_indonesia = new Intent(PilihUjianActivity.this, SoalActivity.class);
-                bahasa_indonesia.putExtras(getIntent().getExtras());
+                bahasa_indonesia.putExtra("sim", 1);
                 startActivity(bahasa_indonesia);
                 break;
 
             case (R.id.btn_pengetahuan_umum):
                 final Intent pengetahuan_umum = new Intent(PilihUjianActivity.this, SoalActivity.class);
-                pengetahuan_umum.putExtras(getIntent().getExtras());
+                pengetahuan_umum.putExtra("sim", 3);
                 startActivity(pengetahuan_umum);
                 break;
         }
