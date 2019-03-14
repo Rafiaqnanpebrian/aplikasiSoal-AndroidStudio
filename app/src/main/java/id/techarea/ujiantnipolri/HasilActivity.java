@@ -54,7 +54,7 @@ public class HasilActivity extends AppCompatActivity {
 
         gauge = (CustomGauge) findViewById(R.id.gauge2);
         gaugeR = (CustomGauge) findViewById(R.id.gaugeIng);
-        gaugeW = (CustomGauge) findViewById(R.id.gaugeIng);
+        gaugeW = (CustomGauge) findViewById(R.id.gaugeInd);
         gaugeL = (CustomGauge) findViewById(R.id.gaugePu);
         skorBahasaInggris = (TextView) findViewById(R.id.NBahasaInggris);
         skorPengetahuanUmum = (TextView) findViewById(R.id.NPengetahuanUmum);

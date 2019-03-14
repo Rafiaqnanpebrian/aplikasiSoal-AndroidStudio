@@ -145,8 +145,49 @@ public class DBHandler extends SQLiteOpenHelper {
         return listJawaban;
     }
 
-    /*public List<Soal> getDataSoalBahasaInggris(int id_exam) {
+    public List<Soal> getDataSoalBahasaInggris(int id_exam) {
         List<Soal> listDataSoal = new ArrayList<>();
-        Cursor c = getReadableDatabase().rawQuery("select * from pertanyaan where id_exam = ");
-    }*/
+        Cursor c = getReadableDatabase().rawQuery("select * from pertanyaan where id_exam = "+id_exam+" order by `id` asc",null);
+        if (c.moveToFirst()) {
+            do {
+                Soal soal = new Soal();
+                soal.setId(c.getInt(c.getColumnIndex("id")));
+                soal.setQuestion(c.getString(c.getColumnIndex("question")));
+                soal.setId_exam(c.getInt(c.getColumnIndex("id_exam")));
+                soal.setListJawaban(getDataJawaban("jawaban", soal.getId()));
+                listDataSoal.add(soal);
+            } while (c.moveToNext());
+        }
+        return listDataSoal;
+    }
+    public List<Soal> getDataSoalBahasaIndonesia(int id_exam) {
+        List<Soal> listDataSoal = new ArrayList<>();
+        Cursor c = getReadableDatabase().rawQuery("select * from pertanyaan where id_exam = "+id_exam+" order by `id` asc",null);
+        if (c.moveToFirst()) {
+            do {
+                Soal soal = new Soal();
+                soal.setId(c.getInt(c.getColumnIndex("id")));
+                soal.setQuestion(c.getString(c.getColumnIndex("question")));
+                soal.setId_exam(c.getInt(c.getColumnIndex("id_exam")));
+                soal.setListJawaban(getDataJawaban("jawaban", soal.getId()));
+                listDataSoal.add(soal);
+            } while (c.moveToNext());
+        }
+        return listDataSoal;
+    }
+    public List<Soal> getDataSoalPengetahuanUmum(int id_exam) {
+        List<Soal> listDataSoal = new ArrayList<>();
+        Cursor c = getReadableDatabase().rawQuery("select * from pertanyaan where id_exam = "+id_exam+" order by `id` asc",null);
+        if (c.moveToFirst()) {
+            do {
+                Soal soal = new Soal();
+                soal.setId(c.getInt(c.getColumnIndex("id")));
+                soal.setQuestion(c.getString(c.getColumnIndex("question")));
+                soal.setId_exam(c.getInt(c.getColumnIndex("id_exam")));
+                soal.setListJawaban(getDataJawaban("jawaban", soal.getId()));
+                listDataSoal.add(soal);
+            } while (c.moveToNext());
+        }
+        return listDataSoal;
+    }
 }

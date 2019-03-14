@@ -108,9 +108,6 @@ public class ShareActivity extends AppCompatActivity implements CircleLayout.OnI
             @Override
             public void onClick(View v) {
                 mDrawer.openDrawer(Gravity.START);
-                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearlayout2);
-                Bitmap bitmap = setViewToBitmapImage(linearLayout);
-                SaveImage(bitmap);
             }
         });
         setupDrawerContent(nvView);
