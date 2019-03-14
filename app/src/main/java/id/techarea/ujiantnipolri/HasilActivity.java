@@ -304,7 +304,9 @@ public class HasilActivity extends AppCompatActivity {
         ya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent simulasi = new Intent(HasilActivity.this, PilihUjianActivity.class);
+                startActivity(simulasi);
+                finish();
 
             }
         });
