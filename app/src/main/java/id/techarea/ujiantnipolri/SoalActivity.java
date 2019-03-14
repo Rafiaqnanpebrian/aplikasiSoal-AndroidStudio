@@ -221,9 +221,9 @@ public class SoalActivity extends AppCompatActivity {
         return jumlahBenar;
     }
 
-    public double getScore(double jmlBenar, double jmlSoal){
+    public double getScore(double jmlhBenar, double jmlSoal){
         //return (int) Math.round((41.83/100)*jmlBenar;
-        return (jmlBenar/jmlSoal)*100;
+        return (jmlhBenar)*1;
 
     }
 
@@ -236,9 +236,9 @@ public class SoalActivity extends AppCompatActivity {
         int jmlhSoalAkumulasi;
         double scoreBahasaInggris, scoreBahasaIndonesia, scorePengetahuanUmum, scoreAkumulasi;
 
-        List<Soal> soalListBahasaInggris = db.getDataSoal(id_exam);
-        List<Soal> soalListBahasaIndonesia = db.getDataSoal(id_exam);
-        List<Soal> soalListPengetahuanUmum = db.getDataSoal(id_exam);
+        List<Soal> soalListBahasaInggris = db.getDataSoal(2);
+        List<Soal> soalListBahasaIndonesia = db.getDataSoal(1);
+        List<Soal> soalListPengetahuanUmum = db.getDataSoal(3);
 
         jmlhSoalAkumulasi = soalListBahasaInggris.size()+soalListBahasaIndonesia.size()+soalListPengetahuanUmum.size();
 
@@ -261,8 +261,6 @@ public class SoalActivity extends AppCompatActivity {
         jmlhSalahAkumulasi = jmlhSalahBahasaInggris+jmlhSalahBahasaIndonesia+jmlhSalahPengetahuanUmum;
         jmlhKosongAkumulasi = jmlhKosongBahasaInggris+jmlhKosongBahasaIndonesia+jmlhKosongPengetahuanUmum;
         scoreAkumulasi = getScore(jmlhBenarAkumulasi,jmlhSoalAkumulasi);
-
-        Log.i("score", "bahasainggris : "+scoreBahasaInggris+"\n"+"bahasaindonesia"+scoreBahasaIndonesia+"\n"+"pengetahuanumum"+scorePengetahuanUmum+"\n");
 
         Intent newIntent = new Intent(SoalActivity.this, HasilActivity.class );
         newIntent.putExtra("jmlhBenar",jmlhBenarAkumulasi);

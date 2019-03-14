@@ -105,7 +105,7 @@ public class AdapterContentSoal extends PagerAdapter {
 
 
 
-        if ((AnswerRecordClass.listJawabanSoal != null || AnswerRecordClass.listJawabanSoal.size()>0) && id_exam ==1)
+        if ((AnswerRecordClass.listJawabanSoal != null || AnswerRecordClass.listJawabanSoal.size()>0) && id_exam ==0)
         {
             listJwbUser = AnswerRecordClass.listJawabanSoal;
             if(listJwbUser.get(position) != null){
