@@ -31,7 +31,7 @@ import pl.pawelkleczkowski.customgauge.CustomGauge;
 
 public class HasilActivity extends AppCompatActivity {
 
-    private TextView skorBahasaInggris, skorPengetahuanUmum, skorBahasaIndonesia, skorAkhir, skorBenar, skorSalah, skorPass, nama;
+    private TextView skorBahasaInggris, skorPengetahuanUmum, skorBahasaIndonesia, skorAkhir, skorBenar, skorSalah, skorPass, nama, keterangan;
     private int benar, salah, kosong, i;
     private ImageButton menu;
     private CustomGauge gauge, gaugeR, gaugeL, gaugeW;
@@ -43,6 +43,8 @@ public class HasilActivity extends AppCompatActivity {
     LinearLayout exit, share, repeat;
 
     boolean doubleBackToExitPressedOnce = false;
+
+    int skorAkumulasi = Integer.parseInt(scoreAkumulasi);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class HasilActivity extends AppCompatActivity {
         skorPass = (TextView) findViewById(R.id.Kosong);
         nama = (TextView) findViewById(R.id.Nama);
         menu = (ImageButton) findViewById(R.id.btn_menu);
+        keterangan = (TextView) findViewById(R.id.keterangan);
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +83,12 @@ public class HasilActivity extends AppCompatActivity {
         HitungNilai();
         TampilNilai();
         gauge();
+
+        if (skorAkumulasi >= 2){
+            keterangan.setText(R.string.lulus);
+        }else{
+            keterangan.setText(R.string.tidak_lulus);
+        }
 
         share = (LinearLayout) findViewById(R.id.share_button);
         exit = (LinearLayout) findViewById(R.id.exit_button);
@@ -177,6 +186,8 @@ public class HasilActivity extends AppCompatActivity {
         skorSalah.setText(String.valueOf(salah));
         skorPass.setText(String.valueOf(kosong));
         nama.setText(name);
+
+
 
         // gauge();
     }

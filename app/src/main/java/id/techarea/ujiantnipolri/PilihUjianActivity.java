@@ -7,13 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import id.techarea.ujiantnipolri.helper.AnswerRecordClass;
 
 public class PilihUjianActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LinearLayout btn_bahasa_inggris, btn_bahasa_indonesia, btn_pengetahuan_umum;
+    LinearLayout btn_bahasa_inggris, btn_bahasa_indonesia, btn_pengetahuan_umum, next_indo, next_ing, next_umum;
 
     String nama = "";
+
+    ImageView img_indo, img_ing, img_umum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +28,30 @@ public class PilihUjianActivity extends AppCompatActivity implements View.OnClic
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_pilih_ujian);
 
-        nama = getIntent().getExtras().getString("nama","");
+        nama = getIntent().getExtras().getString("nama", "");
 
         btn_bahasa_inggris = (LinearLayout) findViewById(R.id.btn_bahasa_inggris);
         btn_bahasa_indonesia = (LinearLayout) findViewById(R.id.btn_bahasa_indonesia);
         btn_pengetahuan_umum = (LinearLayout) findViewById(R.id.btn_pengetahuan_umum);
+
+        img_indo = (ImageView) findViewById(R.id.imageViewIndo);
+        img_ing = (ImageView) findViewById(R.id.imageViewInggris);
+        img_umum = (ImageView) findViewById(R.id.imageViewUmum);
+
+        next_indo = (LinearLayout) findViewById(R.id.nextIndo);
+        next_ing = (LinearLayout) findViewById(R.id.nextIng);
+        next_umum = (LinearLayout) findViewById(R.id.nextUmum);
+
+        if (AnswerRecordClass.listJawabanBahasaIndonesia.size() > 0) {
+            img_indo.setImageResource(R.drawable.icon_buku_copy);
+            next_indo.setBackgroundResource(R.drawable.panah_copy);
+        }if (AnswerRecordClass.listJawabanBahasaInggris.size() > 0) {
+            img_ing.setImageResource(R.drawable.icon_buku_copy);
+            next_ing.setBackgroundResource(R.drawable.panah_copy);
+        }if (AnswerRecordClass.listJawabanPengetahuanUmum.size() > 0) {
+            img_umum.setImageResource(R.drawable.icon_buku_copy);
+            next_umum.setBackgroundResource(R.drawable.panah_copy);
+        }
 
         btn_bahasa_inggris.setOnClickListener(this);
         btn_bahasa_indonesia.setOnClickListener(this);
