@@ -11,12 +11,19 @@ import id.techarea.ujiantnipolri.models.JawabanUser;
 
 public class AnswerRecordClass {
 
-    public static Map<Integer, JawabanUser> listJawabanSoal = new HashMap<>();
+    public static Map<Integer, JawabanUser> listJawabanBahasaInggris = new HashMap<>();
+
+    public static Map<Integer, JawabanUser> listJawabanPengetahuanUmum = new HashMap<>();
+
+    public static Map<Integer, JawabanUser> listJawabanBahasaIndonesia = new HashMap<>();
+
     public AnswerRecordClass() {
     }
 
     public static void resetListJawaban(){
-        listJawabanSoal = new HashMap<>();
+        listJawabanBahasaInggris = new HashMap<>();
+        listJawabanPengetahuanUmum = new HashMap<>();
+        listJawabanBahasaIndonesia = new HashMap<>();
     }
 
 }

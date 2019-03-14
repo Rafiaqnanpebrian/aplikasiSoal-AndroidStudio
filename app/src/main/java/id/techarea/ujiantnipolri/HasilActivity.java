@@ -34,11 +34,11 @@ public class HasilActivity extends AppCompatActivity {
     private TextView skorBahasaInggris, skorPengetahuanUmum, skorBahasaIndonesia, skorAkhir, skorBenar, skorSalah, skorPass, nama;
     private int benar, salah, kosong, i;
     private ImageButton menu;
-    private String scoreBahasaInggris, scorePengetahuanUmum, scoreBahasaIndonesia, scoreAkumulasi;
-    private CustomGauge gauge, gaugeIng, gaugeInd, gaugePu;
-    private String name;
+    private CustomGauge gauge, gaugeR, gaugeL, gaugeW;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
+    private String name;
+    private String scoreInggris,scoreUmum, scoreIndo, scoreAkumulasi;
 
     LinearLayout exit, share, repeat;
 
@@ -53,9 +53,9 @@ public class HasilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hasil);
 
         gauge = (CustomGauge) findViewById(R.id.gauge2);
-        gaugeIng = (CustomGauge) findViewById(R.id.gaugeIng);
-        gaugeInd = (CustomGauge) findViewById(R.id.gaugeInd);
-        gaugePu = (CustomGauge) findViewById(R.id.gaugePu);
+        gaugeR = (CustomGauge) findViewById(R.id.gaugeR);
+        gaugeW = (CustomGauge) findViewById(R.id.gaugeW);
+        gaugeL = (CustomGauge) findViewById(R.id.gaugeL);
         skorBahasaInggris = (TextView) findViewById(R.id.NBahasaInggris);
         skorPengetahuanUmum = (TextView) findViewById(R.id.NPengetahuanUmum);
         skorBahasaIndonesia = (TextView) findViewById(R.id.NBahasaIndonesia);
@@ -113,70 +113,73 @@ public class HasilActivity extends AppCompatActivity {
 
     }
 
-    private void HitungNilai()
-    {
-        scoreBahasaInggris = getIntent().getExtras().getString("scoreBahasaInggris");
-        scoreBahasaIndonesia = getIntent().getExtras().getString("scoreBahasaIndonesia");
-        scorePengetahuanUmum = getIntent().getExtras().getString("scorePengetahuanUmum");
+    private void HitungNilai() {
+        scoreInggris = getIntent().getExtras().getString("scoreBahasaInggris");
+        scoreUmum = getIntent().getExtras().getString("scorePengetahuanUmum");
+        scoreIndo = getIntent().getExtras().getString("scoreBahasaIndonesia");
         scoreAkumulasi = getIntent().getExtras().getString("scoreAkumulasi");
 
-        benar = getIntent().getExtras().getInt("jmlhBenar", 0);
-        salah = getIntent().getExtras().getInt("jmlhSalah", 0);
+        benar = getIntent().getExtras().getInt("jmlhBenar",0);
+        salah = getIntent().getExtras().getInt("jmlhSalah",0);
         kosong = getIntent().getExtras().getInt("jmlhKosong", 0);
         name = getIntent().getExtras().getString("nama","none");
+
     }
 
-    private void gauge(){
-        new Thread(){
-            public void run()
-            {
-                for (i=0;i<=100;i++)
-                {
+    private void gauge() {
+        new Thread() {
+            public void run() {
+                for (i=0;i<=100;i++) {
                     try {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (i<Double.valueOf(scoreBahasaInggris))
-                                {
-                                    gaugeIng.setValue(i);
+                                if (i< Double.valueOf(scoreInggris)){
+                                    gaugeR.setValue(i);
                                 }
-                                if (i<Double.valueOf(scoreBahasaIndonesia))
-                                {
-                                    gaugeInd.setValue(i);
+                                if(i< Double.valueOf(scoreUmum)){
+                                    gaugeL.setValue(i);
                                 }
-                                if (i<Double.valueOf(scorePengetahuanUmum))
-                                {
-                                    gaugePu.setValue(i);
+                                if(i< Double.valueOf(scoreIndo)){
+                                    gaugeW.setValue(i);
                                 }
-                            }
+                                if(i< Double.valueOf(scoreAkumulasi)){
+                                    gauge.setValue(i*2);
+                                }
+                                /*skorReading.setText(String.valueOf(i));
+                                skorWriting.setText(String.valueOf(i));
+                                skorListening.setText(String.valueOf(i));
+                                skorAkhir.setText(String.valueOf(i));
+                                skorBenar.setText(String.valueOf(i));
+                                skorSalah.setText(String.valueOf(i));
+                                skorPass.setText(String.valueOf(i));
+                                nama.setText(name);*/
 
+                            }
                         });
                         Thread.sleep(50);
-                    } catch (InterruptedException e)
-                    {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
-
         }.start();
+
     }
 
-    private void TampilNilai()
-    {
-        skorBahasaInggris.setText(String.format("%.02f",Double.valueOf(scoreBahasaInggris)));
-        skorBahasaIndonesia.setText(String.format("%.02f",Double.valueOf(scoreBahasaIndonesia)));
-        skorPengetahuanUmum.setText(String.format("%.02f",Double.valueOf(scorePengetahuanUmum)));
+    private void TampilNilai() {
+        skorBahasaInggris.setText(String.format("%.02f", Double.valueOf(scoreInggris)));
+        skorPengetahuanUmum.setText(String.format("%.02f", Double.valueOf(scoreUmum)));
+        skorBahasaIndonesia.setText(String.format("%.02f", Double.valueOf(scoreIndo)) );
+        skorAkhir.setText(String.format("%.02f", Double.valueOf(scoreAkumulasi)) );
 
         skorBenar.setText(String.valueOf(benar));
-        skorAkhir.setText(String.valueOf(salah));
+        skorSalah.setText(String.valueOf(salah));
         skorPass.setText(String.valueOf(kosong));
         nama.setText(name);
 
-        //gauge();
+        // gauge();
     }
-
 
     public static Bitmap setViewToBitmapImage(View view) {
         //Define a bitmap with the same size as the view
@@ -290,7 +293,7 @@ public class HasilActivity extends AppCompatActivity {
         Button tidak = (Button) alert1.findViewById(R.id.tidak);
         Button ya = (Button) alert1.findViewById(R.id.iya);
 
-        textView.setText("Apakah Anda ingin mengulang Lagi?");
+        textView.setText("Apakah Anda ingin mengulang simulasi?");
         tidak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

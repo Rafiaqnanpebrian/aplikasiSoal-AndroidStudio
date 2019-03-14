@@ -65,7 +65,7 @@ public class AdapterContentSoal extends PagerAdapter {
         layoutInflater = (LayoutInflater) container.getContext().getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View v = layoutInflater.inflate(R.layout.content_soal, container, false);
 
-        final RadioButton a,b,c,d,e;
+        final RadioButton a, b, c, d, e;
         final RadioGroup jwb;
 
         nmr = (TextView) v.findViewById(R.id.number);
@@ -82,38 +82,50 @@ public class AdapterContentSoal extends PagerAdapter {
         final List<Jawaban> jawabanList = mDataList.get(position).getListJawaban();
 
         //Log.i("soal", mDataList.get(position).getQuestion());
-        nmr.setText(String.valueOf(position+1));
+        nmr.setText(String.valueOf(position + 1));
         String htmlFormat = "<body style='margin:0px'>" +
-                "<p style='text-align:justify;color: #0099cc;    font-size: 11pt; margin:0px;'>"+
-                mDataList.get(position).getQuestion()+"</p></body>";
+                "<p style='text-align:justify;color: #0099cc;    font-size: 11pt; margin:0px;'>" +
+                mDataList.get(position).getQuestion() + "</p></body>";
 
-        if (jawabanList.size()<=4){
+        if (jawabanList.size() <= 4) {
             e.setVisibility(View.GONE);
         }
 
         soal.getSettings();
         soal.setBackgroundColor(Color.TRANSPARENT);
-        soal.loadData(htmlFormat,"text/html","utf-8");
+        soal.loadData(htmlFormat, "text/html", "utf-8");
         a.setText(jawabanList.get(0).getAnswer());
         b.setText(jawabanList.get(1).getAnswer());
         c.setText(jawabanList.get(2).getAnswer());
         d.setText(jawabanList.get(3).getAnswer());
 
-        if (jawabanList.size()>4){
+        if ((AnswerRecordClass.listJawabanBahasaInggris != null || AnswerRecordClass.listJawabanBahasaInggris.size() > 0) && id_exam == 2) {
+            listJwbUser = AnswerRecordClass.listJawabanBahasaInggris;
+            if (listJwbUser.get(position) != null) {
+                setPilihanJawaban(listJwbUser.get(position).getOrder(), jwb, a, b, c, d, e);
+            } else {
+                setPilihanJawaban(0, jwb, a, b, c, d, e);
+            }
+        } else if ((AnswerRecordClass.listJawabanPengetahuanUmum != null || AnswerRecordClass.listJawabanPengetahuanUmum.size() > 0) && id_exam == 3) {
+            listJwbUser = AnswerRecordClass.listJawabanPengetahuanUmum;
+            if (listJwbUser.get(position) != null) {
+                setPilihanJawaban(listJwbUser.get(position).getOrder(), jwb, a, b, c, d, e);
+            } else {
+                setPilihanJawaban(0, jwb, a, b, c, d, e);
+            }
+        } else if ((AnswerRecordClass.listJawabanBahasaIndonesia != null || AnswerRecordClass.listJawabanBahasaIndonesia.size() > 0) && id_exam == 1) {
+            listJwbUser = AnswerRecordClass.listJawabanBahasaIndonesia;
+            if (listJwbUser.get(position) != null) {
+                setPilihanJawaban(listJwbUser.get(position).getOrder(), jwb, a, b, c, d, e);
+            } else {
+                setPilihanJawaban(0, jwb, a, b, c, d, e);
+            }
+        }
+
+        if (jawabanList.size() > 4) {
             e.setText(jawabanList.get(4).getAnswer());
         }
 
-
-
-        if ((AnswerRecordClass.listJawabanSoal != null || AnswerRecordClass.listJawabanSoal.size()>0) && id_exam ==0)
-        {
-            listJwbUser = AnswerRecordClass.listJawabanSoal;
-            if(listJwbUser.get(position) != null){
-                setPilihanJawaban(listJwbUser.get(position).getOrder(), jwb, a, b, c, d, e);
-            }else{
-                setPilihanJawaban(0,jwb, a, b, c, d, e);
-            }
-        }
 
         jwb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -122,7 +134,7 @@ public class AdapterContentSoal extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         listJwbUser.put(position, setJwbUser(position, 0, jawabanList, mDataList));
-                        Log.i("jwbuser", listJwbUser.size()+" order:"+position+" "+listJwbUser.get(position).getOrder());
+                        Log.i("jwbuser", listJwbUser.size() + " order:" + position + " " + listJwbUser.get(position).getOrder());
                     }
                 });
                 b.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +142,7 @@ public class AdapterContentSoal extends PagerAdapter {
                     public void onClick(View v) {
 
                         listJwbUser.put(position, setJwbUser(position, 1, jawabanList, mDataList));
-                        Log.i("jwbuser", listJwbUser.size()+" order:"+position+" "+listJwbUser.get(position).getOrder());
+                        Log.i("jwbuser", listJwbUser.size() + " order:" + position + " " + listJwbUser.get(position).getOrder());
                     }
                 });
                 c.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +150,7 @@ public class AdapterContentSoal extends PagerAdapter {
                     public void onClick(View v) {
 
                         listJwbUser.put(position, setJwbUser(position, 2, jawabanList, mDataList));
-                        Log.i("jwbuser", listJwbUser.size()+" order:"+position+" "+listJwbUser.get(position).getOrder());
+                        Log.i("jwbuser", listJwbUser.size() + " order:" + position + " " + listJwbUser.get(position).getOrder());
                     }
                 });
                 d.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +158,7 @@ public class AdapterContentSoal extends PagerAdapter {
                     public void onClick(View v) {
 
                         listJwbUser.put(position, setJwbUser(position, 3, jawabanList, mDataList));
-                        Log.i("jwbuser", listJwbUser.size()+" order:"+position+" "+listJwbUser.get(position).getOrder());
+                        Log.i("jwbuser", listJwbUser.size() + " order:" + position + " " + listJwbUser.get(position).getOrder());
                     }
                 });
                 e.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +166,7 @@ public class AdapterContentSoal extends PagerAdapter {
                     public void onClick(View v) {
 
                         listJwbUser.put(position, setJwbUser(position, 4, jawabanList, mDataList));
-                        Log.i("jwbuser", listJwbUser.size()+" order:"+position+" "+listJwbUser.get(position).getOrder());
+                        Log.i("jwbuser", listJwbUser.size() + " order:" + position + " " + listJwbUser.get(position).getOrder());
                     }
                 });
 
@@ -170,9 +182,9 @@ public class AdapterContentSoal extends PagerAdapter {
 
             @Override
             public void onPageSelected(int position) {
-                if(listJwbUser.get(position) != null){
+                if (listJwbUser.get(position) != null) {
                     setPilihanJawaban(listJwbUser.get(position).getOrder(), jwb, a, b, c, d, e);
-                }else{
+                } else {
                     setPilihanJawaban(0,jwb, a, b, c, d, e);
                 }
 
@@ -223,7 +235,6 @@ public class AdapterContentSoal extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-//        super.destroyItem(container, position, object);
-        ((ViewPager)container).removeView((View)object);
+        ((ViewPager) container).removeView((View) object);
     }
 }
