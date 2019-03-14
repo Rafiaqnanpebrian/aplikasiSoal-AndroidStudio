@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import id.techarea.ujiantnipolri.helper.AnswerRecordClass;
 import id.techarea.ujiantnipolri.models.JawabanUser;
 import id.techarea.ujiantnipolri.models.Jawaban;
 import id.techarea.ujiantnipolri.models.Soal;
@@ -104,16 +105,15 @@ public class AdapterContentSoal extends PagerAdapter {
 
 
 
-        //Selanjutnya Besok ------ BELUM SELESAI -----
-
-//        if ((AnswerRecordClass.listJawabanReading != null || AnswerRecordClass.listJawabanReading.size()>0) && id_exam ==1){
-//            listJwbUser = AnswerRecordClass.listJawabanReading;
-//            if(listJwbUser.get(position) != null){
-//                setPilihanJawaban(listJwbUser.get(position).getOrder(), jwb, a, b, c, d);
-//            }else{
-//                setPilihanJawaban(0,jwb, a, b, c, d);
-//            }
-//        }
+        if ((AnswerRecordClass.listJawabanSoal != null || AnswerRecordClass.listJawabanSoal.size()>0) && id_exam ==1)
+        {
+            listJwbUser = AnswerRecordClass.listJawabanSoal;
+            if(listJwbUser.get(position) != null){
+                setPilihanJawaban(listJwbUser.get(position).getOrder(), jwb, a, b, c, d, e);
+            }else{
+                setPilihanJawaban(0,jwb, a, b, c, d, e);
+            }
+        }
 
         jwb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

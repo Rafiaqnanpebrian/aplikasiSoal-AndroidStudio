@@ -35,7 +35,8 @@ public class HasilActivity extends AppCompatActivity {
     private int benar, salah, kosong, i;
     private ImageButton menu;
     private String scoreBahasaInggris, scorePengetahuanUmum, scoreBahasaIndonesia, scoreAkumulasi;
-    private CustomGauge gauge, gaugeR, gaugeL, gaugeW;
+    private CustomGauge gauge, gaugeIng, gaugeInd, gaugePu;
+    private String name;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
@@ -52,9 +53,9 @@ public class HasilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hasil);
 
         gauge = (CustomGauge) findViewById(R.id.gauge2);
-        gaugeR = (CustomGauge) findViewById(R.id.gaugeR);
-        gaugeW = (CustomGauge) findViewById(R.id.gaugeW);
-        gaugeL = (CustomGauge) findViewById(R.id.gaugeL);
+        gaugeIng = (CustomGauge) findViewById(R.id.gaugeIng);
+        gaugeInd = (CustomGauge) findViewById(R.id.gaugeInd);
+        gaugePu = (CustomGauge) findViewById(R.id.gaugePu);
         skorBahasaInggris = (TextView) findViewById(R.id.NBahasaInggris);
         skorPengetahuanUmum = (TextView) findViewById(R.id.NPengetahuanUmum);
         skorBahasaIndonesia = (TextView) findViewById(R.id.NBahasaIndonesia);
@@ -75,6 +76,10 @@ public class HasilActivity extends AppCompatActivity {
                 SaveImage(bitmap);
             }
         });
+
+        HitungNilai();
+        TampilNilai();
+        gauge();
 
         share = (LinearLayout) findViewById(R.id.share_button);
         exit = (LinearLayout) findViewById(R.id.exit_button);
@@ -107,6 +112,72 @@ public class HasilActivity extends AppCompatActivity {
         });
 
     }
+
+    private void HitungNilai()
+    {
+        scoreBahasaInggris = getIntent().getExtras().getString("scoreBahasaInggris");
+        scoreBahasaIndonesia = getIntent().getExtras().getString("scoreBahasaIndonesia");
+        scorePengetahuanUmum = getIntent().getExtras().getString("scorePengetahuanUmum");
+        scoreAkumulasi = getIntent().getExtras().getString("scoreAkumulasi");
+
+        benar = getIntent().getExtras().getInt("jmlhBenar", 0);
+        salah = getIntent().getExtras().getInt("jmlhSalah", 0);
+        kosong = getIntent().getExtras().getInt("jmlhKosong", 0);
+        name = getIntent().getExtras().getString("nama","none");
+    }
+
+    private void gauge(){
+        new Thread(){
+            public void run()
+            {
+                for (i=0;i<=100;i++)
+                {
+                    try {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (i<Double.valueOf(scoreBahasaInggris))
+                                {
+                                    gaugeIng.setValue(i);
+                                }
+                                if (i<Double.valueOf(scoreBahasaIndonesia))
+                                {
+                                    gaugeInd.setValue(i);
+                                }
+                                if (i<Double.valueOf(scorePengetahuanUmum))
+                                {
+                                    gaugePu.setValue(i);
+                                }
+                            }
+
+                        });
+                        Thread.sleep(50);
+                    } catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+        }.start();
+    }
+
+    private void TampilNilai()
+    {
+        skorBahasaInggris.setText(String.format("%.02f",Double.valueOf(scoreBahasaInggris)));
+        skorBahasaIndonesia.setText(String.format("%.02f",Double.valueOf(scoreBahasaIndonesia)));
+        skorPengetahuanUmum.setText(String.format("%.02f",Double.valueOf(scorePengetahuanUmum)));
+
+        skorBenar.setText(String.valueOf(benar));
+        skorAkhir.setText(String.valueOf(salah));
+        skorPass.setText(String.valueOf(kosong));
+        nama.setText(name);
+
+        //gauge();
+    }
+
+
     public static Bitmap setViewToBitmapImage(View view) {
         //Define a bitmap with the same size as the view
         Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
@@ -219,7 +290,7 @@ public class HasilActivity extends AppCompatActivity {
         Button tidak = (Button) alert1.findViewById(R.id.tidak);
         Button ya = (Button) alert1.findViewById(R.id.iya);
 
-        textView.setText("Apakah Anda ingin mengulang simulasi?");
+        textView.setText("Apakah Anda ingin mengulang Lagi?");
         tidak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,9 +1,12 @@
 package id.techarea.ujiantnipolri;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -27,8 +30,11 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import id.techarea.ujiantnipolri.helper.AnswerRecordClass;
 import id.techarea.ujiantnipolri.models.Jawaban;
+import id.techarea.ujiantnipolri.models.JawabanUser;
 import id.techarea.ujiantnipolri.models.Soal;
 import id.techarea.ujiantnipolri.modul.DBHandler;
 
@@ -137,13 +143,26 @@ public class SoalActivity extends AppCompatActivity {
         };
         thread.start();
 
-        /*finishLatihan =(Button) findViewById(R.id.btn_finish_soal);
+        finishLatihan =(Button) findViewById(R.id.btn_finish_soal);
         finishLatihan.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
+                AnswerRecordClass.listJawabanSoal = mExamplePagerAdapter.getListJwbUser();
+                try {
+                    if (AnswerRecordClass.listJawabanSoal.size() >0)
+                    {
+                        AlertDialog(1);
+                    } else {
+                        AlertDialog(0);
+                    }
+                }catch (Exception e)
+                {
 
+                }
             }
-        });*/
+        });
 
     }
 
@@ -185,6 +204,118 @@ public class SoalActivity extends AppCompatActivity {
         magicIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(magicIndicator, mViewPager);
     }
+
+    public int jawabanBenar(Map<Integer, JawabanUser> jawabanUser)
+    {
+        int jumlahBenar = 0;
+        for (int i= 0; i< jawabanUser.size();i++)
+        {
+            if(jawabanUser.get(i) !=null)
+            {
+                if(jawabanUser.get(i).getMark() == 1)
+                {
+                    jumlahBenar += 1;
+                }
+            }
+        }
+        return jumlahBenar;
+    }
+
+    public double getScore(double jmlBenar, double jmlSoal){
+        //return (int) Math.round((41.83/100)*jmlBenar;
+        return (jmlBenar/jmlSoal)*100;
+
+    }
+
+    public void finishUjian(Map<Integer, JawabanUser>listJwbUser)
+    {
+        int jmlhBenarBahasaInggris, jmlhSalahBahasaInggris, jmlhKosongBahasaInggris;
+        int jmlhBenarBahasaIndonesia, jmlhSalahBahasaIndonesia, jmlhKosongBahasaIndonesia;
+        int jmlhBenarPengetahuanUmum, jmlhSalahPengetahuanUmum, jmlhKosongPengetahuanUmum;
+        int jmlhBenarAkumulasi, jmlhSalahAkumulasi, jmlhKosongAkumulasi;
+        int jmlhSoalAkumulasi;
+        double scoreBahasaInggris, scoreBahasaIndonesia, scorePengetahuanUmum, scoreAkumulasi;
+
+        List<Soal> soalListBahasaInggris = db.getDataSoal(id_exam);
+        List<Soal> soalListBahasaIndonesia = db.getDataSoal(id_exam);
+        List<Soal> soalListPengetahuanUmum = db.getDataSoal(id_exam);
+
+        jmlhSoalAkumulasi = soalListBahasaInggris.size()+soalListBahasaIndonesia.size()+soalListPengetahuanUmum.size();
+
+        jmlhBenarBahasaInggris = jawabanBenar(AnswerRecordClass.listJawabanSoal);
+        jmlhSalahBahasaInggris = AnswerRecordClass.listJawabanSoal.size() - jmlhBenarBahasaInggris;
+        jmlhKosongBahasaInggris = soalListBahasaInggris.size() - AnswerRecordClass.listJawabanSoal.size();
+        scoreBahasaInggris = getScore(jmlhBenarBahasaInggris, soalListBahasaInggris.size());
+
+        jmlhBenarBahasaIndonesia = jawabanBenar(AnswerRecordClass.listJawabanSoal);
+        jmlhSalahBahasaIndonesia = AnswerRecordClass.listJawabanSoal.size() - jmlhBenarBahasaIndonesia;
+        jmlhKosongBahasaIndonesia = soalListBahasaIndonesia.size() - AnswerRecordClass.listJawabanSoal.size();
+        scoreBahasaIndonesia = getScore(jmlhBenarBahasaIndonesia, soalListBahasaIndonesia.size());
+
+        jmlhBenarPengetahuanUmum = jawabanBenar(AnswerRecordClass.listJawabanSoal);
+        jmlhSalahPengetahuanUmum = AnswerRecordClass.listJawabanSoal.size() - jmlhBenarPengetahuanUmum;
+        jmlhKosongPengetahuanUmum = soalListPengetahuanUmum.size() - AnswerRecordClass.listJawabanSoal.size();
+        scorePengetahuanUmum = getScore(jmlhBenarPengetahuanUmum, soalListPengetahuanUmum.size());
+
+        jmlhBenarAkumulasi = jmlhBenarBahasaInggris+jmlhBenarBahasaIndonesia+jmlhBenarPengetahuanUmum;
+        jmlhSalahAkumulasi = jmlhSalahBahasaInggris+jmlhSalahBahasaIndonesia+jmlhSalahPengetahuanUmum;
+        jmlhKosongAkumulasi = jmlhKosongBahasaInggris+jmlhKosongBahasaIndonesia+jmlhKosongPengetahuanUmum;
+        scoreAkumulasi = getScore(jmlhBenarAkumulasi,jmlhSoalAkumulasi);
+
+        Log.i("score", "bahasainggris : "+scoreBahasaInggris+"\n"+"bahasaindonesia"+scoreBahasaIndonesia+"\n"+"pengetahuanumum"+scorePengetahuanUmum+"\n");
+
+        Intent newIntent = new Intent(SoalActivity.this, HasilActivity.class );
+        newIntent.putExtra("jmlhBenar",jmlhBenarAkumulasi);
+        newIntent.putExtra("jmlhSalah",jmlhSalahAkumulasi);
+        newIntent.putExtra("jmlhKosong",jmlhKosongAkumulasi);
+        newIntent.putExtra("scoreBahasaInggris", String.valueOf(scoreBahasaInggris));
+        newIntent.putExtra("scoreBahasaIndonesia", String.valueOf(scoreBahasaInggris));
+        newIntent.putExtra("scorePengetahuanUmum", String.valueOf(scorePengetahuanUmum));
+        newIntent.putExtra("scoreAkumulasi",String.valueOf(scoreAkumulasi));
+        newIntent.putExtra("ujian", id_exam);
+        newIntent.putExtras(getIntent().getExtras());
+
+        startActivity(newIntent);
+        finish();
+    }
+    public void AlertDialog(final int code){
+        final Dialog alert1 = new Dialog(SoalActivity.this, android.R.style.Theme_Black_NoTitleBar);
+        alert1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alert1.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        alert1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00000000")));
+        alert1.setContentView(R.layout.exit_dialog);
+
+        Button cancelBtn = (Button) alert1.findViewById(R.id.tidak);
+        Button nextBtn = (Button) alert1.findViewById(R.id.iya);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert1.cancel();
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (code == 1){
+                    finishUjian(mExamplePagerAdapter.getListJwbUser());
+                }
+                else if(code == 0){
+                    Intent intent = new Intent(SoalActivity.this, PilihUjianActivity.class);
+                    intent.putExtras(getIntent().getExtras());
+                    startActivity(intent);
+                    alert1.cancel();
+                    finish();
+                }
+            }
+        });
+        alert1.setCancelable(false);
+        alert1.show();
+    }
+
+
 
     @Override
     public void onBackPressed() {
