@@ -53,9 +53,9 @@ public class HasilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hasil);
 
         gauge = (CustomGauge) findViewById(R.id.gauge2);
-        gaugeR = (CustomGauge) findViewById(R.id.gaugeR);
-        gaugeW = (CustomGauge) findViewById(R.id.gaugeW);
-        gaugeL = (CustomGauge) findViewById(R.id.gaugeL);
+        gaugeR = (CustomGauge) findViewById(R.id.gaugeIng);
+        gaugeW = (CustomGauge) findViewById(R.id.gaugeIng);
+        gaugeL = (CustomGauge) findViewById(R.id.gaugePu);
         skorBahasaInggris = (TextView) findViewById(R.id.NBahasaInggris);
         skorPengetahuanUmum = (TextView) findViewById(R.id.NPengetahuanUmum);
         skorBahasaIndonesia = (TextView) findViewById(R.id.NBahasaIndonesia);
