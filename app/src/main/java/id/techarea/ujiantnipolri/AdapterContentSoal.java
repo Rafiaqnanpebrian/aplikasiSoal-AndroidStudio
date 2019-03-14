@@ -89,6 +89,8 @@ public class AdapterContentSoal extends PagerAdapter {
 
         if (jawabanList.size() <= 4) {
             e.setVisibility(View.GONE);
+        }if (jawabanList.size() > 4) {
+            e.setText(jawabanList.get(4).getAnswer());
         }
 
         soal.getSettings();
@@ -122,9 +124,7 @@ public class AdapterContentSoal extends PagerAdapter {
             }
         }
 
-        if (jawabanList.size() > 4) {
-            e.setText(jawabanList.get(4).getAnswer());
-        }
+
 
 
         jwb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -218,15 +218,15 @@ public class AdapterContentSoal extends PagerAdapter {
 
     public void setPilihanJawaban(int order, RadioGroup radioGroup, RadioButton a, RadioButton b, RadioButton c, RadioButton d, RadioButton e) {
         int i = order;
-        if (i == 0) {
+        if (i == 1) {
             a.setChecked(true);
-        } else if (i == 1) {
-            b.setChecked(true);
         } else if (i == 2) {
-            c.setChecked(true);
+            b.setChecked(true);
         } else if (i == 3) {
-            d.setChecked(true);
+            c.setChecked(true);
         } else if (i == 4) {
+            d.setChecked(true);
+        } else if (i == 5) {
             e.setChecked(true);
         } else {
             radioGroup.clearCheck();
@@ -235,6 +235,6 @@ public class AdapterContentSoal extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        ((ViewPager) container).removeView((View) object);
+        container.removeView((View) object);
     }
 }

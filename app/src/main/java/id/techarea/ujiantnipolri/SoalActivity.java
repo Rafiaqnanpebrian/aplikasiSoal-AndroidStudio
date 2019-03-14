@@ -80,7 +80,6 @@ public class SoalActivity extends AppCompatActivity {
                 soalList = db.getDataSoal(id_exam);
 
 
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -117,23 +116,27 @@ public class SoalActivity extends AppCompatActivity {
         };
         thread.start();
 
-        finishLatihan =(Button) findViewById(R.id.btn_finish_soal);
+        finishLatihan = (Button) findViewById(R.id.btn_finish_soal);
         finishLatihan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnswerRecordClass.listJawabanBahasaInggris = mExamplePagerAdapter.getListJwbUser();
-                AnswerRecordClass.listJawabanPengetahuanUmum = mExamplePagerAdapter.getListJwbUser();
-                AnswerRecordClass.listJawabanBahasaIndonesia = mExamplePagerAdapter.getListJwbUser();
-                try{
-                    if (AnswerRecordClass.listJawabanBahasaInggris.size() >0 &&
-                            AnswerRecordClass.listJawabanPengetahuanUmum.size()>0&&
-                            AnswerRecordClass.listJawabanBahasaIndonesia.size()>0){
+                if (id_exam == 1){
+                    AnswerRecordClass.listJawabanBahasaIndonesia = mExamplePagerAdapter.getListJwbUser();
+                }else if (id_exam == 2){
+                    AnswerRecordClass.listJawabanBahasaInggris = mExamplePagerAdapter.getListJwbUser();
+                }else if (id_exam == 3){
+                    AnswerRecordClass.listJawabanPengetahuanUmum = mExamplePagerAdapter.getListJwbUser();
+                }
+
+                try {
+                    if (AnswerRecordClass.listJawabanBahasaInggris.size() > 0 &&
+                            AnswerRecordClass.listJawabanPengetahuanUmum.size() > 0 &&
+                            AnswerRecordClass.listJawabanBahasaIndonesia.size() > 0) {
                         AlertDialog(1);
-                    }else{
+                    } else {
                         AlertDialog(0);
                     }
-                }
-                catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
@@ -200,7 +203,7 @@ public class SoalActivity extends AppCompatActivity {
         }, 500);
     }
 
-    public void AlertDialog(final int code){
+    public void AlertDialog(final int code) {
         final Dialog alert1 = new Dialog(SoalActivity.this, android.R.style.Theme_Black_NoTitleBar);
         alert1.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alert1.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -221,10 +224,9 @@ public class SoalActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (code == 1){
+                if (code == 1) {
                     finishUjian(mExamplePagerAdapter.getListJwbUser());
-                }
-                else if(code == 0){
+                } else if (code == 0) {
                     Intent intent = new Intent(SoalActivity.this, PilihUjianActivity.class);
                     intent.putExtras(getIntent().getExtras());
                     startActivity(intent);
@@ -237,7 +239,8 @@ public class SoalActivity extends AppCompatActivity {
         alert1.show();
     }
 
-    public void finishUjian(Map<Integer, JawabanUser> listJwbUser){
+
+    public void finishUjian(Map<Integer, JawabanUser> listJwbUser) {
 
 
         int jmlhBenarBinggris, jmlhSalahBinggris, jmlKosongBinggris;
@@ -248,60 +251,69 @@ public class SoalActivity extends AppCompatActivity {
         double scoreBahasaInggris, scorePengetahuanUmum, scoreBahasaIndonesia, scoreAkumulasi;
 
 
-        List<Soal> soalListBahasaInggris = db.getDataSoal(2);
-        List<Soal> soalListPengetahuanUmum = db.getDataSoal(3);
-        List<Soal> soalListBahasaIndonesia = db.getDataSoal(1);
+        List<Soal> soalListBahasaInggris = db.getDataSoalBahasaInggris(id_exam);
+        List<Soal> soalListPengetahuanUmum = db.getDataSoalBahasaIndonesia(id_exam);
+        List<Soal> soalListBahasaIndonesia = db.getDataSoalPengetahuanUmum(id_exam);
 
-       jmlhSoalAkumulasi = soalListBahasaInggris.size()+soalListPengetahuanUmum.size()+soalListBahasaIndonesia.size();
+        jmlhSoalAkumulasi = soalListBahasaInggris.size() + soalListPengetahuanUmum.size() + soalListBahasaIndonesia.size();
 
         jmlhBenarBinggris = jawabanBenar(AnswerRecordClass.listJawabanBahasaInggris);
         jmlhSalahBinggris = AnswerRecordClass.listJawabanBahasaInggris.size() - jmlhBenarBinggris;
         jmlKosongBinggris = soalListBahasaInggris.size() - AnswerRecordClass.listJawabanBahasaInggris.size();
-        scoreBahasaInggris = getScore(jmlhBenarBinggris,soalListBahasaInggris.size());
+        scoreBahasaInggris = getScore(jmlhBenarBinggris, soalListBahasaInggris.size());
 
         jmlhBenarPengetahuanUmum = jawabanBenar(AnswerRecordClass.listJawabanPengetahuanUmum);
         jmlhSalahPengetahuanUmum = AnswerRecordClass.listJawabanPengetahuanUmum.size() - jmlhBenarPengetahuanUmum;
         jmlKosongPengetahuanUmum = soalListPengetahuanUmum.size() - AnswerRecordClass.listJawabanPengetahuanUmum.size();
-        scorePengetahuanUmum = getScore(jmlhBenarPengetahuanUmum,soalListPengetahuanUmum.size());
+        scorePengetahuanUmum = getScore(jmlhBenarPengetahuanUmum, soalListPengetahuanUmum.size());
 
         jmlhBenarBahasaIndonesia = jawabanBenar(AnswerRecordClass.listJawabanBahasaIndonesia);
         jmlhSalahBahasaIndonesia = AnswerRecordClass.listJawabanBahasaIndonesia.size() - jmlhBenarBahasaIndonesia;
         jmlKosongBahasaIndonesia = soalListBahasaIndonesia.size() - AnswerRecordClass.listJawabanBahasaIndonesia.size();
-        scoreBahasaIndonesia = getScore(jmlhBenarBahasaIndonesia,soalListBahasaIndonesia.size());
+        scoreBahasaIndonesia = getScore(jmlhBenarBahasaIndonesia, soalListBahasaIndonesia.size());
 
 
+        jmlhBenarAkumulasi = jmlhBenarBinggris + jmlhBenarPengetahuanUmum + jmlhBenarBahasaIndonesia;
+        jmlhSalahAkumulasi = jmlhSalahBinggris + jmlhSalahPengetahuanUmum + jmlhSalahBahasaIndonesia;
+        jmlKosongAkumulasi = jmlKosongBinggris + jmlKosongPengetahuanUmum + jmlKosongBahasaIndonesia;
+        scoreAkumulasi = getScore(jmlhBenarAkumulasi, jmlhSoalAkumulasi);
 
-        jmlhBenarAkumulasi = jmlhBenarBinggris+jmlhBenarPengetahuanUmum+jmlhBenarBahasaIndonesia;
-        jmlhSalahAkumulasi = jmlhSalahBinggris+jmlhSalahPengetahuanUmum+jmlhSalahBahasaIndonesia;
-        jmlKosongAkumulasi = jmlKosongBinggris+jmlKosongPengetahuanUmum+jmlKosongBahasaIndonesia;
-        scoreAkumulasi = getScore(jmlhBenarAkumulasi,jmlhSoalAkumulasi);
-
-        Log.i("score","reading: "+scoreBahasaInggris+"\n"+"listeing: "+scorePengetahuanUmum+"\n"+"Writing: "+scoreBahasaIndonesia+"\n");
+        Log.i("score", "reading: " + scoreBahasaInggris + "\n" + "listeing: " + scorePengetahuanUmum + "\n" + "Writing: " + scoreBahasaIndonesia + "\n");
 
 
-        Intent newIntent = new Intent(SoalActivity.this, HasilActivity.class);
-        newIntent.putExtra("jmlhBenar",jmlhBenarAkumulasi);
-        newIntent.putExtra("jmlhSalah",  jmlhSalahAkumulasi);
-        newIntent.putExtra("jmlhKosong", jmlKosongAkumulasi);
-        newIntent.putExtra("scoreBahasaInggris", String.valueOf(scoreBahasaInggris));
-        newIntent.putExtra("scorePengetahuanUmum", String.valueOf(scorePengetahuanUmum));
-        newIntent.putExtra("scoreBahasaIndonesia", String.valueOf(scoreBahasaIndonesia));
-        newIntent.putExtra("scoreAkumulasi",String.valueOf(scoreAkumulasi));
-        newIntent.putExtra("simulasi", id_exam);
-        newIntent.putExtras(getIntent().getExtras());
-        //newIntent.putExtra("listJwbUser", (Serializable) listJwbUser);
-        // newIntent.putExtra("name", intent.getStringExtra("name").toString());
-        startActivity(newIntent);
-        finish();
+        if (id_exam == 3) {
+            Intent newIntent = new Intent(SoalActivity.this, HasilActivity.class);
+            newIntent.putExtra("jmlhBenar", jmlhBenarAkumulasi);
+            newIntent.putExtra("jmlhSalah", jmlhSalahAkumulasi);
+            newIntent.putExtra("jmlhKosong", jmlKosongAkumulasi);
+            newIntent.putExtra("scoreBahasaInggris", String.valueOf(scoreBahasaInggris));
+            newIntent.putExtra("scorePengetahuanUmum", String.valueOf(scorePengetahuanUmum));
+            newIntent.putExtra("scoreBahasaIndonesia", String.valueOf(scoreBahasaIndonesia));
+            newIntent.putExtra("scoreAkumulasi", String.valueOf(scoreAkumulasi));
+            newIntent.putExtra("simulasi", id_exam);
+            newIntent.putExtras(getIntent().getExtras());
+            //newIntent.putExtra("listJwbUser", (Serializable) listJwbUser);
+            // newIntent.putExtra("name", intent.getStringExtra("name").toString());
+            startActivity(newIntent);
+            finish();
+        } else if (id_exam == 1) {
+            Intent intent = new Intent(SoalActivity.this,PilihUjianActivity.class);
+            intent.putExtras(getIntent().getExtras());
+            startActivity(intent);
+        } else if (id_exam == 2) {
+            Intent intent = new Intent(SoalActivity.this,PilihUjianActivity.class);
+            intent.putExtras(getIntent().getExtras());
+            startActivity(intent);
+        }
     }
 
-    public int jawabanBenar(Map<Integer, JawabanUser> jawabanUser){
+    public int jawabanBenar(Map<Integer, JawabanUser> jawabanUser) {
 
         int jumlahBenar = 0;
 
-        for(int i= 0; i< jawabanUser.size();i++){
-            if(jawabanUser.get(i) != null){
-                if(jawabanUser.get(i).getMark() == 1){
+        for (int i = 0; i < jawabanUser.size(); i++) {
+            if (jawabanUser.get(i) != null) {
+                if (jawabanUser.get(i).getMark() == 1) {
                     jumlahBenar += 1;
                 }
             }
@@ -309,9 +321,9 @@ public class SoalActivity extends AppCompatActivity {
         return jumlahBenar;
     }
 
-    public double getScore(double jmlBenar, double jmlSoal){
+    public double getScore(double jmlBenar, double jmlSoal) {
         //return (int) Math.round((41.83/100)*jmlBenar);
-        return (jmlBenar/jmlSoal)*100;
+        return (jmlBenar / jmlSoal) * 100;
     }
 
 }
