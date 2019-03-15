@@ -38,13 +38,13 @@ public class HasilActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
     private String name;
-    private String scoreInggris,scoreUmum, scoreIndo, scoreAkumulasi;
+    private String scoreInggris, scoreUmum, scoreIndo, scoreAkumulasi;
+
+    private double skorAkumulasi;
 
     LinearLayout exit, share, repeat;
 
     boolean doubleBackToExitPressedOnce = false;
-
-    int skorAkumulasi = Integer.parseInt(scoreAkumulasi);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +84,6 @@ public class HasilActivity extends AppCompatActivity {
         TampilNilai();
         gauge();
 
-        if (skorAkumulasi >= 2){
-            keterangan.setText(R.string.lulus);
-        }else{
-            keterangan.setText(R.string.tidak_lulus);
-        }
-
         share = (LinearLayout) findViewById(R.id.share_button);
         exit = (LinearLayout) findViewById(R.id.exit_button);
         repeat = (LinearLayout) findViewById(R.id.repeat_button);
@@ -128,32 +122,39 @@ public class HasilActivity extends AppCompatActivity {
         scoreIndo = getIntent().getExtras().getString("scoreBahasaIndonesia");
         scoreAkumulasi = getIntent().getExtras().getString("scoreAkumulasi");
 
-        benar = getIntent().getExtras().getInt("jmlhBenar",0);
-        salah = getIntent().getExtras().getInt("jmlhSalah",0);
+        skorAkumulasi = Double.parseDouble(getIntent().getExtras().getString("scoreAkumulasi"));
+        if (skorAkumulasi >= 60){
+            keterangan.setText(R.string.lulus);
+        }else {
+            keterangan.setText(R.string.tidak_lulus);
+        }
+
+        benar = getIntent().getExtras().getInt("jmlhBenar", 0);
+        salah = getIntent().getExtras().getInt("jmlhSalah", 0);
         kosong = getIntent().getExtras().getInt("jmlhKosong", 0);
-        name = getIntent().getExtras().getString("nama","none");
+        name = getIntent().getExtras().getString("nama", "none");
 
     }
 
     private void gauge() {
         new Thread() {
             public void run() {
-                for (i=0;i<=100;i++) {
+                for (i = 0; i <= 100; i++) {
                     try {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (i< Double.valueOf(scoreInggris)){
+                                if (i < Double.valueOf(scoreInggris)) {
                                     gaugeR.setValue(i);
                                 }
-                                if(i< Double.valueOf(scoreUmum)){
+                                if (i < Double.valueOf(scoreUmum)) {
                                     gaugeL.setValue(i);
                                 }
-                                if(i< Double.valueOf(scoreIndo)){
+                                if (i < Double.valueOf(scoreIndo)) {
                                     gaugeW.setValue(i);
                                 }
-                                if(i< Double.valueOf(scoreAkumulasi)){
-                                    gauge.setValue(i*2);
+                                if (i < Double.valueOf(scoreAkumulasi)) {
+                                    gauge.setValue(i * 2);
                                 }
                                 /*skorReading.setText(String.valueOf(i));
                                 skorWriting.setText(String.valueOf(i));
@@ -179,14 +180,13 @@ public class HasilActivity extends AppCompatActivity {
     private void TampilNilai() {
         skorBahasaInggris.setText(String.format("%.02f", Double.valueOf(scoreInggris)));
         skorPengetahuanUmum.setText(String.format("%.02f", Double.valueOf(scoreUmum)));
-        skorBahasaIndonesia.setText(String.format("%.02f", Double.valueOf(scoreIndo)) );
-        skorAkhir.setText(String.format("%.02f", Double.valueOf(scoreAkumulasi)) );
+        skorBahasaIndonesia.setText(String.format("%.02f", Double.valueOf(scoreIndo)));
+        skorAkhir.setText(String.format("%.02f", Double.valueOf(scoreAkumulasi)));
 
         skorBenar.setText(String.valueOf(benar));
         skorSalah.setText(String.valueOf(salah));
         skorPass.setText(String.valueOf(kosong));
         nama.setText(name);
-
 
 
         // gauge();
@@ -210,6 +210,7 @@ public class HasilActivity extends AppCompatActivity {
         //return the bitmap
         return returnedBitmap;
     }
+
     public void SaveImage(Bitmap finalBitmap) {
         String root = Environment.getExternalStorageDirectory().toString();
         File myDir = new File(root + "/SimulasiToefl/skor");
@@ -246,7 +247,7 @@ public class HasilActivity extends AppCompatActivity {
         // Create a new fragment and specify the fragment to show based on nav item clicked
 
         Class fragmentClass;
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 break;
             case R.id.nav_second_fragment:
@@ -291,7 +292,7 @@ public class HasilActivity extends AppCompatActivity {
         alert1.show();
     }
 
-    public void repeatdialog(){
+    public void repeatdialog() {
         final Dialog alert1 = new Dialog(HasilActivity.this, android.R.style.Theme_Black_NoTitleBar);
         alert1.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alert1.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -339,11 +340,10 @@ public class HasilActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 500);
     }
-
 
 
 }
