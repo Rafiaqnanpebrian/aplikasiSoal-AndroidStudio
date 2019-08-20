@@ -129,7 +129,7 @@ public class SoalActivity extends AppCompatActivity {
                 }
 
                 try {
-                    if (AnswerRecordClass.listJawabanBahasaInggris.size() > 0 &&
+                    if (AnswerRecordClass.listJawabanBahasaInggris.size() > 0&&
                             AnswerRecordClass.listJawabanPengetahuanUmum.size() > 0 &&
                             AnswerRecordClass.listJawabanBahasaIndonesia.size() > 0) {
                         AlertDialog(1);
